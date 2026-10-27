@@ -1,0 +1,6 @@
+{
+  "name": "SpecMatrix PH — Laptop & Desktop Purchase Analyzer",
+  "description": "Review, filter, compare side-by-side, rank with configurable weights, and export laptop and desktop purchase options priced in Philippine Pesos.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
