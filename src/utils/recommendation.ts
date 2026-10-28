@@ -8,19 +8,18 @@ import {
 import { formatPHP, formatStorage } from './markdownParser';
 
 /**
- * Default percentage weights specified for the "Recommended to Buy" view.
- * Total = 30 + 15 + 10 + 10 + 10 + 10 + 5 + 5 + 5 = 100%.
+ * Default weights match the source rubric; TGP is already reflected in its GPU benchmarks.
  */
 export const DEFAULT_WEIGHTS: RecommendationWeights = {
   gpu: 30,
-  vram: 15,
-  tgp: 10,
-  ram: 10,
-  storage: 10,
-  display: 10,
-  cpu: 5,
-  warranty: 5,
-  freebies: 5,
+  vram: 10,
+  tgp: 0,
+  ram: 8,
+  storage: 5,
+  display: 15,
+  cpu: 25,
+  warranty: 4,
+  freebies: 3,
 };
 
 export const WEIGHT_LABELS: Record<keyof RecommendationWeights, string> = {
@@ -36,189 +35,34 @@ export const WEIGHT_LABELS: Record<keyof RecommendationWeights, string> = {
 };
 
 /**
- * Computes a deterministic 0–100 display quality score based on panel technology (OLED vs IPS),
- * resolution (2.5K vs FHD+ vs FHD), refresh rate (144Hz–320Hz), and adaptive sync features.
- */
-export function getDisplayQualityScore(display: string): number {
-  const lower = display.toLowerCase();
-  let score = 0;
-
-  // Panel technology (up to 42 points)
-  if (lower.includes('oled')) {
-    score += 42;
-  } else if (lower.includes('mini-led') || lower.includes('miniled')) {
-    score += 38;
-  } else if (lower.includes('ips')) {
-    score += 22;
-  } else if (lower.includes('external')) {
-    score += 24;
-  } else {
-    score += 15;
-  }
-
-  // Resolution tier (up to 32 points)
-  if (lower.includes('4k') || lower.includes('uhd')) {
-    score += 32;
-  } else if (lower.includes('2.5k') || lower.includes('qhd') || lower.includes('wqxga') || lower.includes('1600p')) {
-    score += 30;
-  } else if (lower.includes('fhd+') || lower.includes('1200p')) {
-    score += 18;
-  } else if (lower.includes('fhd') || lower.includes('1080p')) {
-    score += 12;
-  } else {
-    score += 10;
-  }
-
-  // Refresh rate (up to 24 points)
-  const hzMatch = lower.match(/(\d+)\s*hz/);
-  const hz = hzMatch ? Number.parseInt(hzMatch[1], 10) : 60;
-  if (hz >= 300) {
-    score += 24;
-  } else if (hz >= 240) {
-    score += 22;
-  } else if (hz >= 165) {
-    score += 18;
-  } else if (hz >= 144) {
-    score += 12;
-  } else {
-    score += 5;
-  }
-
-  // Sync & size tiebreakers (up to 4 points)
-  if (lower.includes('g-sync')) {
-    score += 4;
-  }
-  if (lower.includes('16"')) {
-    score += 2;
-  } else if (lower.includes('15.3"')) {
-    score += 1;
-  }
-
-  return Math.min(100, score);
-}
-
-/**
- * Returns a normalized 0–100 GPU performance tier rating.
- * Respects the markdown's desktop adjustment where the Desktop RTX 5060 Ti (gpuScore = 16)
- * matches Laptop RTX 5070 gaming performance, while Laptop RTX 5060 Ti sits slightly above Laptop RTX 5060.
+ * Returns the source dataset's 0–100 GPU benchmark score.
  */
 export function getGpuPerformanceScore(option: LaptopOption): number {
-  if (option.formFactor === 'Desktop' && option.gpuModel === 'RTX 5060 Ti') {
-    return 100; // Matches Laptop RTX 5070 tier per markdown adjustment
-  }
-  if (option.gpu >= 5080) {
-    return 100;
-  }
-  if (option.gpu === 5070) {
-    return 100;
-  }
-  if (option.gpuModel === 'RTX 5060 Ti') {
-    return 68;
-  }
-  if (option.gpu === 5060) {
-    return 62.5;
-  }
-  if (option.gpu === 5050) {
-    return 38;
-  }
-  // Fallback using parsed gpuScore out of 16
-  if (option.gpuScore > 0) {
-    return Math.min(100, (option.gpuScore / 16) * 100);
-  }
-  return 50;
+  return option.gpuScore;
 }
 
 /**
- * Normalizes GPU power / TGP onto a 0–100 scale.
- * Laptop GPUs range from 100W to 140W in this dataset.
- * Desktop GPUs (`tgp === 0` in table) use full PCIe desktop board power and receive an 85/100
- * performance-equivalent rating as documented in `all_laptop_options.md`.
+ * Returns a normalized TGP score for the optional custom-ranking slider.
+ * TGP is already reflected in the source GPU benchmark score and has no default weight.
  */
 export function getEffectiveTgpScore(option: LaptopOption): number {
-  if (option.formFactor === 'Desktop' && option.tgp === 0) {
-    return 85;
-  }
-  if (option.tgp >= 140) return 100;
-  if (option.tgp >= 125) return 90;
-  if (option.tgp >= 115) return 80;
-  if (option.tgp >= 100) return 62;
-  if (option.tgp > 0) {
-    return Math.max(25, Math.round((option.tgp / 140) * 100));
-  }
-  return 40;
+  return option.tgpScore;
 }
 
 /**
  * Normalizes all 9 hardware dimensions onto a 0–100 scale for transparent weighted scoring.
  */
 export function computeComponentBreakdown(option: LaptopOption): ComponentBreakdown {
-  const gpu = getGpuPerformanceScore(option);
-
-  // VRAM: 12GB+ = 100, 8GB = 60, 6GB = 35
-  const vram =
-    option.vram >= 16
-      ? 100
-      : option.vram >= 12
-        ? 100
-        : option.vram >= 8
-          ? 60
-          : Math.max(25, (option.vram / 12) * 100);
-
-  const tgp = getEffectiveTgpScore(option);
-
-  // RAM: 32GB+ = 100, 24GB = 78, 16GB = 55, 8GB = 20
-  const ram =
-    option.ram >= 32
-      ? 100
-      : option.ram >= 24
-        ? 78
-        : option.ram >= 16
-          ? 55
-          : 20;
-
-  // Storage: 1TB (1024GB)+ = 100, 512GB = 50
-  const storage =
-    option.storage >= 2048
-      ? 100
-      : option.storage >= 1024
-        ? 100
-        : option.storage >= 512
-          ? 50
-          : 25;
-
-  const display = getDisplayQualityScore(option.display);
-
-  // CPU: calibrated from markdown's manual CPU score (max 4.5 in table, max rule 5.0)
-  let cpu = 65;
-  if (option.cpuScore > 0) {
-    cpu = Math.min(100, Math.round((option.cpuScore / 4.5) * 100));
-  } else {
-    const cpuLower = option.cpu.toLowerCase();
-    if (cpuLower.includes('ultra 9') || cpuLower.includes('ryzen 9') || cpuLower.includes('i9')) {
-      cpu = 95;
-    } else if (cpuLower.includes('ultra 7') || cpuLower.includes('ryzen 7') || cpuLower.includes('i7')) {
-      cpu = 76;
-    } else {
-      cpu = 45;
-    }
-  }
-
-  // Warranty: 2 years = 100, 1 year = 55, 0 years (store baseline only) = 10
-  const warranty = option.warranty >= 2 ? 100 : option.warranty === 1 ? 55 : 10;
-
-  // Freebies/bundle: 0–10 rating scaled to 0–100
-  const freebies = Math.min(100, Math.max(0, option.freebies * 10));
-
   return {
-    gpu,
-    vram,
-    tgp,
-    ram,
-    storage,
-    display,
-    cpu,
-    warranty,
-    freebies,
+    gpu: option.gpuScore,
+    vram: option.vramScore,
+    tgp: getEffectiveTgpScore(option),
+    ram: option.ramScore,
+    storage: option.storageScore,
+    display: option.displayScore,
+    cpu: option.cpuScore,
+    warranty: option.warrantyScore,
+    freebies: option.freebieScore,
   };
 }
 
@@ -352,21 +196,21 @@ function buildInsights(
   }
 
   // CPU
-  if (option.cpuScore >= 4.25) {
+  if (option.cpuScore >= 85) {
     pros.push(`Flagship-tier ${option.cpu} processor excels at CPU-intensive productivity and gaming`);
     if (strengthPhrases.length < 3) {
       strengthPhrases.push(`${option.cpu} CPU`);
     }
-  } else if (option.cpuScore <= 2.0) {
+  } else if (option.cpuScore <= 50) {
     cons.push(`Modest ${option.cpu} processor trails HX-series CPUs in multi-core workloads`);
   }
 
   // Freebies & Warranty
-  if (option.freebies >= 9) {
-    pros.push(`Comprehensive bundle (${option.freebies}/10 freebie rating) reduces accessory spend`);
+  if (option.freebies >= 80) {
+    pros.push(`Strong bundle score (${option.freebies.toFixed(1)}/100) reduces accessory spend`);
     strengthPhrases.push('full bundle');
-  } else if (option.freebies <= 2) {
-    cons.push(`Minimal included bundle (${option.freebies}/10 freebies)`);
+  } else if (option.freebies <= 20) {
+    cons.push(`Low bundle score (${option.freebies.toFixed(1)}/100); check accessory costs`);
   }
 
   if (option.warranty >= 2) {
@@ -386,8 +230,8 @@ function buildInsights(
     if (strengthPhrases.length < 3) {
       strengthPhrases.push(`low ${formatPHP(option.price)} price`);
     }
-  } else if (option.valueScore >= 25) {
-    pros.push(`Strong specification value (${option.valueScore.toFixed(2)} pts per ₱100k)`);
+  } else if (option.valueScore >= 0.6) {
+    pros.push(`Strong specification value (Value Index ${option.valueScore.toFixed(2)})`);
   }
 
   // Notes & Penalties
@@ -448,7 +292,7 @@ function buildInsights(
     option.price
   )}) ranks #${recommendationRank} of ${totalOptions} with a weighted recommendation score of ${recommendationScore.toFixed(
     1
-  )}/100 (original Value score: ${option.valueScore.toFixed(2)}). ${verdictTier}. ${explanation}`;
+  )}/100 (source Value Index: ${option.valueScore.toFixed(2)}). ${verdictTier}. ${explanation}`;
 
   return {
     explanation,
@@ -509,7 +353,7 @@ export function rankLaptopOptions(
     };
   });
 
-  // Step 2: Sort descending by recommendationScore, then valueScore, then lower price
+  // Step 2: Sort descending by recommendationScore, then source Value Index, then lower price
   scored.sort((a, b) => {
     if (b.recommendationScore !== a.recommendationScore) {
       return b.recommendationScore - a.recommendationScore;

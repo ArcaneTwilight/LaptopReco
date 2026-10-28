@@ -135,6 +135,13 @@ export const OptionsTableView: React.FC<OptionsTableViewProps> = ({
     });
 
     return [...filtered].sort((a, b) => {
+      if (sortField === 'adjustedRank') {
+        if (a.adjustedRank === null) return b.adjustedRank === null ? 0 : 1;
+        if (b.adjustedRank === null) return -1;
+        return sortDirection === 'asc'
+          ? a.adjustedRank - b.adjustedRank
+          : b.adjustedRank - a.adjustedRank;
+      }
       const valA = a[sortField];
       const valB = b[sortField];
       if (valA !== valB) {
@@ -481,6 +488,7 @@ export const OptionsTableView: React.FC<OptionsTableViewProps> = ({
                   <span className="sr-only">Compare</span>
                 </th>
                 <SortHeader field="finalRank" label="Rank" align="right" />
+                <SortHeader field="adjustedRank" label="Adj. Rank" align="right" />
                 <th scope="col" className="py-3 px-3 text-xs font-semibold text-slate-700 min-w-[235px]">
                   Option &amp; Source
                 </th>
@@ -500,8 +508,8 @@ export const OptionsTableView: React.FC<OptionsTableViewProps> = ({
                 </th>
                 <SortHeader field="freebies" label="Freebies" align="right" />
                 <SortHeader field="warranty" label="Warranty" align="right" />
-                <SortHeader field="score" label="Score" align="right" />
-                <SortHeader field="valueScore" label="Value" align="right" />
+                <SortHeader field="score" label="Total" align="right" />
+                <SortHeader field="valueScore" label="Value Index" align="right" />
                 <th scope="col" className="py-3 px-3 text-xs font-semibold text-slate-700 min-w-[210px]">
                   Notes
                 </th>
@@ -544,6 +552,10 @@ export const OptionsTableView: React.FC<OptionsTableViewProps> = ({
                       #{opt.finalRank}
                     </td>
 
+                    <td className="py-3 px-2.5 text-right font-mono tabular-nums text-slate-500 align-middle whitespace-nowrap">
+                      {opt.adjustedRank ? `#${opt.adjustedRank}` : '—'}
+                    </td>
+
                     {/* Laptop Name + Online / Store Pill */}
                     <td className="py-3 px-3 align-middle">
                       <div className="font-semibold text-slate-900 text-[13px] leading-snug">
@@ -556,7 +568,7 @@ export const OptionsTableView: React.FC<OptionsTableViewProps> = ({
                           listingPrefix={opt.listingPrefix}
                         />
                         <span className="text-[11px] text-slate-500 font-mono tabular-nums">
-                          Rec #{opt.recommendationRank}
+                          Custom #{opt.recommendationRank}
                         </span>
                       </div>
                     </td>
@@ -589,12 +601,12 @@ export const OptionsTableView: React.FC<OptionsTableViewProps> = ({
 
                     {/* RAM */}
                     <td className="py-3 px-2.5 text-right font-mono tabular-nums text-slate-800 align-middle whitespace-nowrap">
-                      {opt.ram}GB
+                      {opt.ramDescription}
                     </td>
 
                     {/* Storage */}
                     <td className="py-3 px-2.5 text-right font-mono tabular-nums text-slate-800 align-middle whitespace-nowrap">
-                      {formatStorage(opt.storage)}
+                      {opt.storageDescription}
                     </td>
 
                     {/* Display */}
@@ -613,11 +625,11 @@ export const OptionsTableView: React.FC<OptionsTableViewProps> = ({
                         type="button"
                         onClick={() => onOpenFreebies(opt)}
                         title={`View freebies and bundle details for ${opt.cleanName}`}
-                        aria-label={`View freebies (${opt.freebies} out of 10) for ${opt.cleanName}`}
+                        aria-label={`View bundle details and score (${opt.freebies.toFixed(1)} out of 100) for ${opt.cleanName}`}
                         className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-slate-200 bg-slate-50 hover:bg-slate-100 hover:border-slate-300 text-slate-800 font-mono tabular-nums transition-colors whitespace-nowrap shrink-0"
                       >
                         <Gift className="w-3.5 h-3.5 text-slate-600 shrink-0" aria-hidden="true" />
-                        <span>{opt.freebies}/10</span>
+                        <span>{opt.freebies.toFixed(0)}/100</span>
                       </button>
                     </td>
 

@@ -36,14 +36,34 @@ export function buildOptionExportJson(
     rankings: {
       recommendationRank: option.recommendationRank,
       totalOptionsCompared: totalOptions,
-      originalTableFinalRank: option.finalRank,
+      sourceValueRank: option.finalRank,
+      adjustedRank: option.adjustedRank,
+      adjustedRecommendation: option.adjustedRecommendation || null,
     },
     scores: {
       recommendationScore: option.recommendationScore,
       prePenaltyWeightedScore: option.rawWeightedScore,
       notePenaltyPoints: option.penaltyPoints,
-      originalSpecScore: option.score,
-      originalValueScore: option.valueScore,
+      sourceTotalScore: option.score,
+      sourceValueIndex: option.valueScore,
+      adjustedScore: option.adjustedScore,
+      adjustedValueIndex: option.adjustedValueIndex,
+      componentScores: {
+        gpu: option.gpuScore,
+        cpu: option.cpuScore,
+        vram: option.vramScore,
+        display: option.displayScore,
+        ram: option.ramScore,
+        storage: option.storageScore,
+        warranty: option.warrantyScore,
+        freebies: option.freebieScore,
+      },
+      benchmarks: {
+        averageFps: option.avgFps,
+        onePercentLowFps: option.onePercentLowFps,
+        cinebenchR23Single: option.cinebenchR23Single,
+        cinebenchR23Multi: option.cinebenchR23Multi,
+      },
       activeWeights: normalizedWeights,
     },
     specifications: {
@@ -52,17 +72,20 @@ export function buildOptionExportJson(
       vramGB: option.vram,
       tgpWatts: option.formFactor === 'Desktop' && option.tgp === 0 ? 'Desktop PCIe GPU' : option.tgp,
       ramGB: option.ram,
+      ramDescription: option.ramDescription,
       storageGB: option.storage,
       storageFormatted: formatStorage(option.storage),
+      storageDescription: option.storageDescription,
       display: option.display,
+      wireless: option.wireless,
       cpu: option.cpu,
-      freebiesRating: `${option.freebies}/10`,
+      freebiesDescription: option.freebiesDescription,
       warrantyYears: option.warranty,
+      warrantyDescription: option.warrantyDescription,
     },
-    originalSubScores: {
+    sourceComponentScores: {
       gpuScore: option.gpuScore,
       vramScore: option.vramScore,
-      tgpScore: option.tgpScore,
       ramScore: option.ramScore,
       storageScore: option.storageScore,
       cpuScore: option.cpuScore,
@@ -73,7 +96,7 @@ export function buildOptionExportJson(
     pros: option.pros,
     cons: option.cons,
     finalRecommendationSummary: option.finalRecommendationSummary,
-    dataSource: 'all_laptop_options.md',
+    dataSource: 'public/laptop-options.json',
   };
 
   return JSON.stringify(payload, null, 2);
@@ -117,7 +140,7 @@ export function buildOptionExportMarkdown(
 **Full Listing:** ${option.laptop}  
 **Source:** ${option.source} (${option.sourceChannel})  
 **Price:** ${formatPHP(option.price)}  
-**Recommendation Rank:** #${option.recommendationRank} of ${totalOptions} (Original Value Table Rank: #${option.finalRank})
+**Custom Recommendation Rank:** #${option.recommendationRank} of ${totalOptions} (Source Value Rank: #${option.finalRank})
 
 ---
 
@@ -128,8 +151,9 @@ export function buildOptionExportMarkdown(
 | **Recommendation Score (Weighted)** | **${option.recommendationScore.toFixed(2)} / 100** |
 | Pre-Penalty Hardware Score | ${option.rawWeightedScore.toFixed(2)} / 100 |
 | Note Risk Penalty | ${option.penaltyPoints > 0 ? `-${option.penaltyPoints} pts` : '0 pts'} |
-| **Original Specification Score** | **${option.score.toFixed(2)}** |
-| **Original Value Score (per ₱100k)** | **${option.valueScore.toFixed(2)}** |
+| **Source Total Score** | **${option.score.toFixed(2)} / 100** |
+| **Source Value Index** | **${option.valueScore.toFixed(2)}** |
+| Adjusted Rank / Score | ${option.adjustedRank === null ? 'Not ranked' : `#${option.adjustedRank} / ${option.adjustedScore?.toFixed(2) ?? '—'}`} |
 
 **Active Weight Profile:** ${weightSummary}
 
@@ -137,19 +161,19 @@ export function buildOptionExportMarkdown(
 
 ## Full Specifications
 
-| Component | Specification | Original Table Sub-Score |
+| Component | Specification | Source Sub-Score |
 | :--- | :--- | ---: |
 | **GPU** | ${option.gpuDisplay} | ${option.gpuScore} |
 | **VRAM** | ${option.vram}GB | ${option.vramScore} |
-| **GPU Power / TGP** | ${tgpLabel} | ${option.tgpScore} |
-| **RAM** | ${option.ram}GB | ${option.ramScore} |
-| **Storage** | ${formatStorage(option.storage)} (${option.storage}GB) | ${option.storageScore} |
-| **Display** | ${option.display} | — |
+| **GPU Power / TGP** | ${tgpLabel} | Not separately scored |
+| **RAM** | ${option.ramDescription} | ${option.ramScore} |
+| **Storage** | ${option.storageDescription} | ${option.storageScore} |
+| **Display** | ${option.display} | ${option.displayScore} |
 | **CPU** | ${option.cpu} | ${option.cpuScore} |
-| **Freebies / Bundle** | ${option.freebies} / 10 | ${option.freebieScore} |
+| **Freebies / Bundle** | ${option.freebiesDescription} | ${option.freebieScore} |
 | **Warranty** | ${option.warranty} ${option.warranty === 1 ? 'year' : 'years'} | ${option.warrantyScore} |
 
-**Original Evaluator Notes:** ${option.notes || 'None'}
+**Source Evaluator Notes:** ${option.notes || 'None'}
 
 ---
 
@@ -167,7 +191,7 @@ ${consBlock}
 
 ${option.finalRecommendationSummary}
 
-*Data source: \`all_laptop_options.md\`*
+*Data source: \`public/laptop-options.json\`*
 `;
 }
 

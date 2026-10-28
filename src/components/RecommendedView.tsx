@@ -34,11 +34,11 @@ const PRESET_PROFILES: { label: string; weights: RecommendationWeights }[] = [
     weights: {
       gpu: 45,
       vram: 25,
-      tgp: 15,
+      tgp: 0,
       ram: 5,
       storage: 5,
       display: 5,
-      cpu: 0,
+      cpu: 15,
       warranty: 0,
       freebies: 0,
     },
@@ -48,7 +48,7 @@ const PRESET_PROFILES: { label: string; weights: RecommendationWeights }[] = [
     weights: {
       gpu: 20,
       vram: 15,
-      tgp: 5,
+      tgp: 0,
       ram: 20,
       storage: 15,
       display: 15,
@@ -77,6 +77,10 @@ export const RecommendedView: React.FC<RecommendedViewProps> = ({
   );
 
   const topPick = rankedOptions[0];
+  const adjustedOptions = [...rankedOptions]
+    .filter((option) => option.adjustedRank !== null)
+    .sort((a, b) => (a.adjustedRank ?? Infinity) - (b.adjustedRank ?? Infinity));
+  const unadjustedOptions = rankedOptions.filter((option) => option.adjustedRank === null);
 
   const handleSliderChange = (key: keyof RecommendationWeights, value: number) => {
     onWeightsChange((prev) => ({
@@ -86,7 +90,116 @@ export const RecommendedView: React.FC<RecommendedViewProps> = ({
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+    <div className="space-y-6">
+      <section
+        aria-label="Source adjusted recommendations"
+        className="bg-white border border-slate-200 rounded-xl overflow-hidden"
+      >
+        <div className="px-6 py-4 border-b border-slate-200 flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h2 className="text-base font-semibold text-slate-950">
+              Source Adjusted Ranking
+            </h2>
+            <p className="text-xs text-slate-500 mt-1">
+              The published decision ranking, including real-world caveats. Source score and
+              adjusted score are shown separately because the source uses different calculations.
+            </p>
+          </div>
+          <span className="text-xs text-slate-500">
+            {adjustedOptions.length} adjusted recommendations
+          </span>
+        </div>
+        <div className="divide-y divide-slate-100">
+          {adjustedOptions.map((option) => (
+            <article key={option.id} className="px-5 py-4 space-y-3">
+              <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-3">
+                <div className="flex items-start gap-3">
+                  <span className="w-8 h-8 rounded-lg bg-slate-900 text-white flex items-center justify-center font-mono text-xs font-semibold shrink-0">
+                    #{option.adjustedRank}
+                  </span>
+                  <div className="space-y-1.5">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <h3 className="text-sm font-semibold text-slate-900">
+                        {option.cleanName}
+                      </h3>
+                      <SourcePill
+                        sourceChannel={option.sourceChannel}
+                        formFactor={option.formFactor}
+                        listingPrefix={option.listingPrefix}
+                      />
+                    </div>
+                    <p className="text-xs text-slate-700 leading-relaxed">
+                      {option.adjustedRecommendation}
+                    </p>
+                  </div>
+                </div>
+                <div className="flex flex-wrap lg:flex-col lg:items-end gap-x-4 gap-y-1 text-xs font-mono tabular-nums shrink-0">
+                  <strong className="text-slate-950">{formatPHP(option.price)}</strong>
+                  <span className="text-slate-600">
+                    Source {option.score.toFixed(2)} / 100 · Value {option.valueScore.toFixed(2)}
+                  </span>
+                  {option.adjustedScore !== null && option.adjustedValueIndex !== null && (
+                    <span className="text-slate-600">
+                      Adjusted {option.adjustedScore.toFixed(2)} / 100 · Value{' '}
+                      {option.adjustedValueIndex.toFixed(3)}
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              <div className="flex flex-wrap gap-1.5 pl-11">
+                {([
+                  ['GPU', option.gpuScore],
+                  ['CPU', option.cpuScore],
+                  ['VRAM', option.vramScore],
+                  ['Display', option.displayScore],
+                  ['RAM', option.ramScore],
+                  ['SSD', option.storageScore],
+                  ['Warranty', option.warrantyScore],
+                  ['Bundle', option.freebieScore],
+                ] as const).map(([label, value]) => (
+                  <span
+                    key={label}
+                    className="rounded-md bg-slate-100 px-2 py-1 text-[11px] text-slate-700 font-mono tabular-nums"
+                  >
+                    {label} {value.toFixed(1)}
+                  </span>
+                ))}
+                <span className="rounded-md bg-sky-50 px-2 py-1 text-[11px] text-sky-900 font-mono tabular-nums">
+                  {option.avgFps} avg / {option.onePercentLowFps} 1% low FPS
+                </span>
+                <span className="rounded-md bg-sky-50 px-2 py-1 text-[11px] text-sky-900 font-mono tabular-nums">
+                  Cinebench R23 {option.cinebenchR23Single} / {option.cinebenchR23Multi}
+                </span>
+              </div>
+
+              <details className="pl-11 text-xs text-slate-600">
+                <summary className="cursor-pointer font-medium text-slate-700">
+                  Full specifications
+                </summary>
+                <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 pt-3">
+                  <div><dt className="font-medium">CPU</dt><dd>{option.cpu}</dd></div>
+                  <div><dt className="font-medium">GPU</dt><dd>{option.gpuDisplay}</dd></div>
+                  <div><dt className="font-medium">RAM</dt><dd>{option.ramDescription}</dd></div>
+                  <div><dt className="font-medium">Storage</dt><dd>{option.storageDescription}</dd></div>
+                  <div><dt className="font-medium">Display</dt><dd>{option.display}</dd></div>
+                  <div><dt className="font-medium">Wireless</dt><dd>{option.wireless}</dd></div>
+                  <div><dt className="font-medium">Warranty</dt><dd>{option.warrantyDescription}</dd></div>
+                  <div><dt className="font-medium">Bundle</dt><dd>{option.freebiesDescription}</dd></div>
+                </dl>
+              </details>
+            </article>
+          ))}
+        </div>
+        {unadjustedOptions.length > 0 && (
+          <div className="px-5 py-3 border-t border-slate-100 text-xs text-slate-500">
+            {unadjustedOptions.length} additional configurations are listed in the source score
+            table but do not have an adjusted-rank entry.
+          </div>
+        )}
+      </section>
+
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
       {/* Left Column: Configurable Priority Weights Panel */}
       <aside className="lg:col-span-4 bg-white border border-slate-200 rounded-xl p-5 space-y-5 lg:sticky lg:top-6">
         <div className="flex items-start justify-between gap-3">
@@ -96,7 +209,12 @@ export const RecommendedView: React.FC<RecommendedViewProps> = ({
               <h2 className="text-base font-semibold">Scoring Weights</h2>
             </div>
             <p className="text-xs text-slate-500 mt-1 leading-relaxed">
-              Adjust hardware priorities to recalculate rankings immediately. Negative notes (thermal throttling, unverified GPU, weak display) apply automatic score deductions.
+              Adjust priorities to recalculate a custom ranking using the source component scores. Negative notes apply additional score deductions.
+            </p>
+            <p className="text-xs text-slate-500 mt-2 leading-relaxed">
+              Default weights match the published rubric: GPU 30%, CPU 25%, VRAM 10%,
+              display 15%, RAM 8%, SSD 5%, warranty 4%, and bundle 3%. TGP is already
+              reflected in GPU benchmark scores. Value Index = total score ÷ price × 1,000.
             </p>
           </div>
         </div>
@@ -179,7 +297,7 @@ export const RecommendedView: React.FC<RecommendedViewProps> = ({
               <div className="space-y-1.5">
                 <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-emerald-800">
                   <Award className="w-4 h-4 text-emerald-700 shrink-0" aria-hidden="true" />
-                  <span>#1 Recommended to Buy</span>
+                  <span>#1 Custom-Weighted Pick</span>
                   <SourcePill
                     sourceChannel={topPick.sourceChannel}
                     formFactor={topPick.formFactor}
@@ -199,7 +317,7 @@ export const RecommendedView: React.FC<RecommendedViewProps> = ({
                   {formatPHP(topPick.price)}
                 </div>
                 <div className="text-xs text-slate-500 mt-1 font-mono tabular-nums">
-                  Rec. Score: <strong className="text-slate-900">{topPick.recommendationScore.toFixed(1)}</strong>/100 · Value: {topPick.valueScore.toFixed(2)}
+                  Custom: <strong className="text-slate-900">{topPick.recommendationScore.toFixed(1)}</strong>/100 · Source Value Index: {topPick.valueScore.toFixed(2)}
                 </div>
               </div>
             </div>
@@ -253,7 +371,7 @@ export const RecommendedView: React.FC<RecommendedViewProps> = ({
                     className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-900 font-semibold font-mono tabular-nums transition-colors whitespace-nowrap shrink-0"
                   >
                     <Gift className="w-3.5 h-3.5 text-slate-600 shrink-0" aria-hidden="true" />
-                    <span>{topPick.freebies} / 10</span>
+                    <span>{topPick.freebies.toFixed(1)} / 100</span>
                   </button>
                 </div>
               </div>
@@ -268,7 +386,8 @@ export const RecommendedView: React.FC<RecommendedViewProps> = ({
             {/* Spotlight Actions */}
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div className="text-xs text-slate-500 font-mono tabular-nums">
-                Original Spec Score: {topPick.score.toFixed(2)} · Table Value Rank: #{topPick.finalRank}
+                Source Total: {topPick.score.toFixed(2)} / 100 · Value Rank: #{topPick.finalRank}
+                {topPick.adjustedRank !== null && ` · Adjusted Rank: #${topPick.adjustedRank}`}
               </div>
               <div className="flex items-center gap-2.5">
                 <button
@@ -384,7 +503,7 @@ export const RecommendedView: React.FC<RecommendedViewProps> = ({
                           {formatPHP(opt.price)}
                         </div>
                         <div className="text-xs font-mono tabular-nums text-slate-600 mt-0.5">
-                          <strong className="text-slate-950">{opt.recommendationScore.toFixed(1)}</strong>/100 · Val {opt.valueScore.toFixed(2)}
+                          Custom <strong className="text-slate-950">{opt.recommendationScore.toFixed(1)}</strong>/100 · Value Index {opt.valueScore.toFixed(2)}
                         </div>
                       </div>
 
@@ -392,11 +511,11 @@ export const RecommendedView: React.FC<RecommendedViewProps> = ({
                         <button
                           type="button"
                           onClick={() => onOpenFreebies(opt)}
-                          title={`Inspect freebies (${opt.freebies}/10) for ${opt.cleanName}`}
+                          title={`Inspect bundle score (${opt.freebies.toFixed(1)}/100) for ${opt.cleanName}`}
                           className="inline-flex items-center gap-1 px-2 py-1 text-xs font-mono tabular-nums text-slate-700 hover:text-slate-950 bg-slate-100 hover:bg-slate-200/80 rounded-md whitespace-nowrap shrink-0 transition-colors"
                         >
                           <Gift className="w-3 h-3 text-slate-600 shrink-0" aria-hidden="true" />
-                          <span>{opt.freebies}/10</span>
+                          <span>{opt.freebies.toFixed(0)}/100</span>
                         </button>
                         <button
                           type="button"
@@ -442,6 +561,7 @@ export const RecommendedView: React.FC<RecommendedViewProps> = ({
           </div>
         </section>
       </div>
+    </div>
     </div>
   );
 };

@@ -178,7 +178,7 @@ export const ExportView: React.FC<ExportViewProps> = ({
                     className="inline-flex items-center gap-1 px-2 py-0.5 rounded border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-800 font-mono tabular-nums transition-colors whitespace-nowrap shrink-0"
                   >
                     <Gift className="w-3 h-3 text-slate-600 shrink-0" aria-hidden="true" />
-                    <span>{selectedOption.freebies}/10</span>
+                    <span>{selectedOption.freebies.toFixed(1)}/100</span>
                   </button>
                 </dd>
               </div>
@@ -189,9 +189,17 @@ export const ExportView: React.FC<ExportViewProps> = ({
                 </dd>
               </div>
               <div>
-                <dt className="text-slate-500">Spec / Value Score</dt>
+                <dt className="text-slate-500">Source Total / Value Index</dt>
                 <dd className="font-medium text-slate-900 font-mono tabular-nums">
                   {selectedOption.score.toFixed(2)} / {selectedOption.valueScore.toFixed(2)}
+                </dd>
+              </div>
+              <div>
+                <dt className="text-slate-500">Source Adjusted Rank</dt>
+                <dd className="font-medium text-slate-900 font-mono tabular-nums">
+                  {selectedOption.adjustedRank === null
+                    ? 'Not ranked'
+                    : `#${selectedOption.adjustedRank} · ${selectedOption.adjustedScore?.toFixed(2) ?? ''}`}
                 </dd>
               </div>
               <div>

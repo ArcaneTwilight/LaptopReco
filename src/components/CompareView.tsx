@@ -4,7 +4,6 @@ import { RankedLaptopOption } from '../types/laptop';
 import { formatPHP, formatStorage } from '../utils/markdownParser';
 import {
   findBestIndices,
-  getDisplayQualityScore,
   getEffectiveTgpScore,
   getGpuPerformanceScore,
 } from '../utils/recommendation';
@@ -77,7 +76,7 @@ export const CompareView: React.FC<CompareViewProps> = ({
     'higher'
   );
   const bestDisplay = findBestIndices(
-    selectedLaptops.map((o) => getDisplayQualityScore(o.display)),
+    selectedLaptops.map((o) => o.displayScore),
     'higher'
   );
   const bestCpu = findBestIndices(
@@ -301,7 +300,7 @@ export const CompareView: React.FC<CompareViewProps> = ({
                   >
                     <span>{opt.gpuDisplay}</span>
                     <span className="text-slate-500 font-normal font-mono tabular-nums ml-1.5">
-                      ({opt.gpuScore} pts)
+                      ({opt.gpuScore.toFixed(1)} / 100)
                     </span>
                     <BestMarker show={bestGpu[idx]} />
                   </td>
@@ -413,7 +412,7 @@ export const CompareView: React.FC<CompareViewProps> = ({
                   >
                     <span>{opt.cpu}</span>
                     <span className="text-slate-500 font-normal font-mono tabular-nums ml-1.5">
-                      ({opt.cpuScore}/5)
+                      ({opt.cpuScore.toFixed(1)} / 100)
                     </span>
                     <BestMarker show={bestCpu[idx]} />
                   </td>
@@ -439,7 +438,7 @@ export const CompareView: React.FC<CompareViewProps> = ({
                         className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-slate-200 bg-white hover:bg-slate-100 text-slate-800 font-mono tabular-nums font-medium transition-colors whitespace-nowrap shrink-0"
                       >
                         <Gift className="w-3.5 h-3.5 text-slate-600 shrink-0" aria-hidden="true" />
-                        <span>{opt.freebies} / 10</span>
+                        <span>{opt.freebies.toFixed(1)} / 100</span>
                       </button>
                       <BestMarker show={bestFreebies[idx]} />
                     </div>
@@ -470,7 +469,7 @@ export const CompareView: React.FC<CompareViewProps> = ({
               {/* Original Spec Score */}
               <tr>
                 <td className="py-3 px-4 font-medium text-slate-600">
-                  Spec Score
+                  Total Score
                 </td>
                 {selectedLaptops.map((opt, idx) => (
                   <td
@@ -488,7 +487,7 @@ export const CompareView: React.FC<CompareViewProps> = ({
               {/* Original Value Score */}
               <tr>
                 <td className="py-3 px-4 font-medium text-slate-600">
-                  Value Score (per ₱100k)
+                  Value Index
                 </td>
                 {selectedLaptops.map((opt, idx) => (
                   <td
@@ -499,6 +498,39 @@ export const CompareView: React.FC<CompareViewProps> = ({
                   >
                     <span>{opt.valueScore.toFixed(2)}</span>
                     <BestMarker show={bestValueScore[idx]} />
+                  </td>
+                ))}
+              </tr>
+
+              <tr>
+                <td className="py-3 px-4 font-medium text-slate-600">
+                  Adjusted Source Rank
+                </td>
+                {selectedLaptops.map((opt) => (
+                  <td
+                    key={opt.id}
+                    className="py-3 px-4 border-l border-slate-100 font-mono tabular-nums text-slate-800"
+                  >
+                    {opt.adjustedRank === null
+                      ? 'Not ranked'
+                      : `#${opt.adjustedRank} · ${opt.adjustedScore?.toFixed(2) ?? ''}`}
+                  </td>
+                ))}
+              </tr>
+
+              <tr>
+                <td className="py-3 px-4 font-medium text-slate-600">
+                  Benchmarks
+                </td>
+                {selectedLaptops.map((opt) => (
+                  <td
+                    key={opt.id}
+                    className="py-3 px-4 border-l border-slate-100 font-mono tabular-nums text-slate-800"
+                  >
+                    <div>{opt.avgFps} avg / {opt.onePercentLowFps} 1% low FPS</div>
+                    <div className="text-slate-500">
+                      R23 single {opt.cinebenchR23Single} / multi {opt.cinebenchR23Multi}
+                    </div>
                   </td>
                 ))}
               </tr>

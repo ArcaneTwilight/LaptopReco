@@ -4,9 +4,9 @@ A lightweight, client-side React + Vite + TypeScript web application for reviewi
 
 ## Features
 
-- **All Options Table**: Sortable and filterable view of all configurations parsed from `all_laptop_options.md`, complete with `Online` / `Store` source pills, an always-visible sticky horizontal scrollbar while scrolling vertically, synced PHP price slider/input, and an interactive Freebies popup modal.
+- **All Options Table**: Sortable and filterable view of every configuration, including source Value Index and adjusted rank, complete specifications, source pills, a sticky horizontal scrollbar, synced PHP price slider/input, and an interactive bundle-details modal.
 - **Side-by-Side Comparison**: Compare 2 to 4 selected machines with automatic best-value highlighting per row and clear callouts for thermal, verification, display, or value concerns.
-- **Weighted Recommendation Engine**: Customize 9 hardware and bundle priority sliders (GPU, VRAM, TGP, RAM, Storage, Display, CPU, Warranty, Freebies) with automatic risk deductions from evaluator notes.
+- **Weighted Recommendation Engine**: View the published adjusted ranking and customize 9 hardware/bundle priority sliders with automatic risk deductions. Default weights match the source rubric; benchmark and component scores are shown for each adjusted recommendation.
 - **JSON & Markdown Export**: Export any single option as a clean slugged `.json` or `.md` report containing full specifications, scores, ranks, pros/cons, and a final recommendation summary.
 
 ---
@@ -65,6 +65,11 @@ npx vercel --prod
 
 ## Updating Laptop Data
 
-Prices and specifications are parsed locally in the browser from the markdown table under `## All options` in:
+The app loads the merged dataset from:
 
-- `public/assets/aistudio/all_laptop_options__1__53bc6231.md` (or drop an updated `public/all_laptop_options.md` file with the same markdown table columns).
+- `public/laptop-options.json`
+
+This JSON contains the full specifications, benchmark estimates, rubric component scores,
+source and adjusted rankings, recommendations, and caveats from the source-of-truth markdown
+and its specification/scoring CSV tables. Update the JSON when refreshing the source data; the
+website does not parse the source documents at runtime.

@@ -13,24 +13,20 @@ import {
   SortField,
 } from './types/laptop';
 import {
-  FALLBACK_SAMPLE_OPTIONS,
   formatPHP,
-  parseLaptopOptionsMarkdown,
+  parseLaptopOptionsJson,
 } from './utils/markdownParser';
 import { DEFAULT_WEIGHTS, rankLaptopOptions } from './utils/recommendation';
 
 type ActiveTab = 'options' | 'compare' | 'recommended' | 'export';
 
 const BASE_PREFIX = import.meta.env.BASE_URL.replace(/\/$/, '');
-const MARKDOWN_CANDIDATE_PATHS = [
-  `${BASE_PREFIX}/assets/aistudio/all_laptop_options__1__53bc6231.md`,
-  `${BASE_PREFIX}/all_laptop_options.md`,
-];
+const DATASET_PATH = `${BASE_PREFIX}/laptop-options.json`;
 
 export default function App() {
   const [rawOptions, setRawOptions] = useState<LaptopOption[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [usingFallbackData, setUsingFallbackData] = useState<boolean>(false);
+  const [loadError, setLoadError] = useState<string | null>(null);
 
   const [activeTab, setActiveTab] = useState<ActiveTab>('options');
   const [selectedCompareIds, setSelectedCompareIds] = useState<string[]>([]);
@@ -53,44 +49,41 @@ export default function App() {
     maxPrice: 180000,
   });
 
-  // Load and parse `all_laptop_options.md` locally in the browser on mount
+  // Load the merged specifications and scoring dataset on mount.
   useEffect(() => {
     let cancelled = false;
 
-    async function loadMarkdownOptions() {
+    async function loadLaptopOptions() {
       setIsLoading(true);
-      let loadedOptions: LaptopOption[] = [];
-
-      for (const candidateUrl of MARKDOWN_CANDIDATE_PATHS) {
-        try {
-          const res = await fetch(candidateUrl);
-          if (!res.ok) continue;
-          const mdText = await res.text();
-          const parsed = parseLaptopOptionsMarkdown(mdText);
-          if (parsed.length > 0) {
-            loadedOptions = parsed;
-            break;
-          }
-        } catch {
-          // Try next candidate path
+      try {
+        const response = await fetch(DATASET_PATH);
+        if (!response.ok) {
+          throw new Error(`Dataset request failed (${response.status} ${response.statusText}).`);
         }
-      }
-
-      if (!cancelled) {
-        if (loadedOptions.length > 0) {
-          setRawOptions(loadedOptions);
-          setUsingFallbackData(false);
-          const maxP = Math.max(...loadedOptions.map((o) => o.price));
+        const parsed = parseLaptopOptionsJson(await response.json());
+        if (!cancelled) {
+          setRawOptions(parsed);
+          setLoadError(null);
+          const maxP = Math.max(...parsed.map((option) => option.price));
           setFilters((prev) => ({ ...prev, maxPrice: maxP }));
-        } else {
-          setRawOptions(FALLBACK_SAMPLE_OPTIONS);
-          setUsingFallbackData(true);
         }
-        setIsLoading(false);
+      } catch (error) {
+        if (!cancelled) {
+          setRawOptions([]);
+          setLoadError(
+            error instanceof Error
+              ? `Unable to load laptop data: ${error.message}`
+              : 'Unable to load laptop data due to an unknown error.'
+          );
+        }
+      } finally {
+        if (!cancelled) {
+          setIsLoading(false);
+        }
       }
     }
 
-    loadMarkdownOptions();
+    loadLaptopOptions();
     return () => {
       cancelled = true;
     };
@@ -135,7 +128,11 @@ export default function App() {
       setSortDirection((prev) => (prev === 'asc' ? 'desc' : 'asc'));
     } else {
       setSortField(field);
-      setSortDirection(field === 'finalRank' || field === 'price' ? 'asc' : 'desc');
+      setSortDirection(
+        field === 'finalRank' || field === 'adjustedRank' || field === 'price'
+          ? 'asc'
+          : 'desc'
+      );
     }
   };
 
@@ -301,6 +298,15 @@ export default function App() {
           </div>
         </div>
 
+        {loadError && (
+          <div
+            role="alert"
+            className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800"
+          >
+            {loadError}
+          </div>
+        )}
+
         {/* Loading Skeleton State */}
         {isLoading ? (
           <div
@@ -387,9 +393,9 @@ export default function App() {
       <footer className="border-t border-slate-200 bg-white mt-12">
         <div className="max-w-[1440px] mx-auto px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-slate-500">
           <div>
-            Data source: Prices (in Philippine Pesos) and specifications come from{' '}
-            <code className="font-mono text-slate-700">all_laptop_options.md</code>
-            {usingFallbackData && ' (fallback sample active — markdown file unreachable)'}.
+            Data source:{' '}
+            <code className="font-mono text-slate-700">public/laptop-options.json</code>
+            {' '}merges the source markdown and specification/scoring CSV files.
           </div>
           <div>
             All calculations, comparisons, and exports run locally in your browser.

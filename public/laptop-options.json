@@ -1,0 +1,1597 @@
+{
+  "title": "Laptop and Desktop Purchase - Source of Truth",
+  "source": "all_laptop_options.md with laptop_desktop_specifications.csv and laptop_desktop_scores.csv",
+  "currency": "PHP",
+  "rubric": {
+    "gpu": "0.30 x GPU score (FPS-weighted)",
+    "cpu": "0.25 x CPU score (Cinebench R23)",
+    "vram": "0.10 x VRAM score",
+    "display": "0.15 x display score",
+    "ram": "0.08 x RAM score",
+    "storage": "0.05 x SSD score",
+    "warranty": "0.04 x warranty score",
+    "freebies": "0.03 x freebies score",
+    "valueIndex": "Total score / price x 1,000",
+    "notes": "Source-table score and value index are shown separately from adjusted ranking, which accounts for real-world caveats."
+  },
+  "assumptions": [
+    "GPU FPS estimates represent a mixed modern AAA suite at 1080p/1440p High settings, with DLSS where appropriate.",
+    "Cinebench R23 results are sustained estimates for the listed CPU/GPU power configuration.",
+    "The desktop RTX 5060 Ti uses desktop-class performance estimates and its included monitor/peripherals are included in the price.",
+    "ASUS TUF F16 has a reported sustained thermal-throttling concern; ASUS ROG G16 listing should be verified before purchase."
+  ],
+  "options": [
+    {
+      "id": "1-lenovo-legion-5-83ly00lvph",
+      "rank": 1,
+      "option": "Store — Lenovo Legion 5 83LY00LVPH",
+      "name": "Lenovo Legion 5 83LY00LVPH",
+      "listingPrefix": "Store",
+      "source": "Store laptop",
+      "formFactor": "Laptop",
+      "price": 110999,
+      "cpu": "Intel Core i7-14700HX",
+      "gpu": {
+        "name": "Laptop RTX 5070 8GB GDDR7, 115W",
+        "code": 5070,
+        "model": "RTX 5070",
+        "vramGB": 8,
+        "tgpWatts": 115
+      },
+      "memory": {
+        "ramGB": 16,
+        "ramDescription": "16GB DDR5-5600 single SODIMM, two slots, upgradeable",
+        "storageGB": 512,
+        "storageDescription": "512GB PCIe Gen4 NVMe; second M.2 slot"
+      },
+      "display": "15.1\" 2560x1600 OLED 165Hz, HDR600, 500 nits",
+      "wireless": "Wi-Fi 7, BT 5.4",
+      "warranty": {
+        "years": 3,
+        "description": "3-year Legion Ultimate Support"
+      },
+      "freebies": {
+        "description": "Office Home 2024, Lenovo AI Now",
+        "score": 0
+      },
+      "notes": "BEST OVERALL DEAL; upgrade RAM/SSD later",
+      "benchmarks": {
+        "averageFps": 95,
+        "onePercentLowFps": 65,
+        "cinebenchR23Single": 2100,
+        "cinebenchR23Multi": 30000
+      },
+      "componentScores": {
+        "gpu": 80,
+        "cpu": 100,
+        "vram": 75,
+        "display": 95,
+        "ram": 60,
+        "storage": 55,
+        "warranty": 100,
+        "freebies": 0
+      },
+      "totalScore": 82.3,
+      "valueIndex": 0.74,
+      "adjustedRank": 1,
+      "adjustedScore": 83.6,
+      "adjustedValueIndex": 0.75,
+      "recommendation": "Best overall deal. RTX 5070 115 W, i7-14700HX, 2.5K OLED, Wi‑Fi 7, Office, 3-year warranty; upgrade RAM/SSD later."
+    },
+    {
+      "id": "2-asus-tuf-f16-fx608jpr-rv155wsm",
+      "rank": 2,
+      "option": "Store — ASUS TUF F16 FX608JPR-RV155WSM",
+      "name": "ASUS TUF F16 FX608JPR-RV155WSM",
+      "listingPrefix": "Store",
+      "source": "Store laptop",
+      "formFactor": "Laptop",
+      "price": 111999,
+      "cpu": "Intel Core i7-14650HX",
+      "gpu": {
+        "name": "Laptop RTX 5070 8GB GDDR7, 115W",
+        "code": 5070,
+        "model": "RTX 5070",
+        "vramGB": 8,
+        "tgpWatts": 115
+      },
+      "memory": {
+        "ramGB": 16,
+        "ramDescription": "16GB DDR5-5600",
+        "storageGB": 1024,
+        "storageDescription": "1TB PCIe Gen4 NVMe"
+      },
+      "display": "16\" 1920x1200 IPS 165Hz G-Sync",
+      "wireless": "Wi-Fi",
+      "warranty": {
+        "years": 1,
+        "description": "1-year manufacturer assumed"
+      },
+      "freebies": {
+        "description": "Office, Microsoft 365 Basic, backpack",
+        "score": 45.98
+      },
+      "notes": "High paper value; thermal throttling risk",
+      "benchmarks": {
+        "averageFps": 95,
+        "onePercentLowFps": 65,
+        "cinebenchR23Single": 2050,
+        "cinebenchR23Multi": 27000
+      },
+      "componentScores": {
+        "gpu": 80,
+        "cpu": 100,
+        "vram": 75,
+        "display": 75,
+        "ram": 60,
+        "storage": 75,
+        "warranty": 50,
+        "freebies": 45.98
+      },
+      "totalScore": 79.68,
+      "valueIndex": 0.71,
+      "adjustedRank": null,
+      "adjustedScore": null,
+      "adjustedValueIndex": null,
+      "recommendation": null
+    },
+    {
+      "id": "3-msi-cyborg-15-max-c2wg-251ph",
+      "rank": 3,
+      "option": "Store — MSI Cyborg 15 MAX C2WG-251PH",
+      "name": "MSI Cyborg 15 MAX C2WG-251PH",
+      "listingPrefix": "Store",
+      "source": "Store laptop",
+      "formFactor": "Laptop",
+      "price": 111999,
+      "cpu": "Intel Core 7 240H",
+      "gpu": {
+        "name": "Laptop RTX 5070 8GB GDDR7, 100W",
+        "code": 5070,
+        "model": "RTX 5070",
+        "vramGB": 8,
+        "tgpWatts": 100
+      },
+      "memory": {
+        "ramGB": 16,
+        "ramDescription": "16GB DDR5, expandable to 96GB",
+        "storageGB": 512,
+        "storageDescription": "512GB PCIe Gen4 NVMe"
+      },
+      "display": "15.6\" 1920x1080 IPS 144Hz, 100% sRGB",
+      "wireless": "Wi-Fi",
+      "warranty": {
+        "years": 1,
+        "description": "1-year manufacturer assumed"
+      },
+      "freebies": {
+        "description": "Mouse or backpack varies by retailer",
+        "score": 28.74
+      },
+      "notes": "Cheapest RTX 5070; weak display/power",
+      "benchmarks": {
+        "averageFps": 88,
+        "onePercentLowFps": 60,
+        "cinebenchR23Single": 1750,
+        "cinebenchR23Multi": 16000
+      },
+      "componentScores": {
+        "gpu": 74,
+        "cpu": 83,
+        "vram": 75,
+        "display": 75,
+        "ram": 60,
+        "storage": 45,
+        "warranty": 50,
+        "freebies": 28.74
+      },
+      "totalScore": 71.61,
+      "valueIndex": 0.64,
+      "adjustedRank": 19,
+      "adjustedScore": 73.71,
+      "adjustedValueIndex": 0.658,
+      "recommendation": "Cheapest RTX 5070, but 100 W GPU limit, FHD screen, and 512 GB SSD."
+    },
+    {
+      "id": "4-lenovo-legion-5i-83rw003hph",
+      "rank": 4,
+      "option": "Online 2 — Lenovo Legion 5i 83RW003HPH",
+      "name": "Lenovo Legion 5i 83RW003HPH",
+      "listingPrefix": "Online 2",
+      "source": "Online laptop",
+      "formFactor": "Laptop",
+      "price": 129806.69,
+      "cpu": "Intel Core Ultra 7 356H",
+      "gpu": {
+        "name": "Laptop RTX 5060 8GB GDDR7, 100W",
+        "code": 5060,
+        "model": "RTX 5060",
+        "vramGB": 8,
+        "tgpWatts": 100
+      },
+      "memory": {
+        "ramGB": 16,
+        "ramDescription": "16GB DDR5-5600",
+        "storageGB": 1024,
+        "storageDescription": "1TB PCIe Gen4 NVMe"
+      },
+      "display": "15.3\" 2560x1600 OLED 165Hz, HDR1000, 500 nits",
+      "wireless": "Wi-Fi 7, BT 5.4",
+      "warranty": {
+        "years": 2,
+        "description": "2-year Legion Ultimate Support"
+      },
+      "freebies": {
+        "description": "Keyboard, headset, backpack, mouse, 25\" 320Hz monitor",
+        "score": 100
+      },
+      "notes": "Cheapest OLED + 1TB + 2-year warranty",
+      "benchmarks": {
+        "averageFps": 80,
+        "onePercentLowFps": 55,
+        "cinebenchR23Single": 1900,
+        "cinebenchR23Multi": 19000
+      },
+      "componentScores": {
+        "gpu": 67.5,
+        "cpu": 95,
+        "vram": 75,
+        "display": 95,
+        "ram": 60,
+        "storage": 75,
+        "warranty": 75,
+        "freebies": 100
+      },
+      "totalScore": 80.3,
+      "valueIndex": 0.62,
+      "adjustedRank": 11,
+      "adjustedScore": 82.9,
+      "adjustedValueIndex": 0.639,
+      "recommendation": "Cheapest OLED + 1 TB + two-year warranty, but RTX 5060 limits future AAA performance."
+    },
+    {
+      "id": "5-lenovo-legion-pro-5i-83f3cto1ww",
+      "rank": 5,
+      "option": "Online 3 — Lenovo Legion Pro 5i 83F3CTO1WW",
+      "name": "Lenovo Legion Pro 5i 83F3CTO1WW",
+      "listingPrefix": "Online 3",
+      "source": "Online laptop",
+      "formFactor": "Laptop",
+      "price": 132663.64,
+      "cpu": "Intel Core Ultra 7 255HX",
+      "gpu": {
+        "name": "Laptop RTX 5060 8GB GDDR7, 100W",
+        "code": 5060,
+        "model": "RTX 5060",
+        "vramGB": 8,
+        "tgpWatts": 100
+      },
+      "memory": {
+        "ramGB": 16,
+        "ramDescription": "16GB DDR5-5600",
+        "storageGB": 1024,
+        "storageDescription": "1TB PCIe Gen4 NVMe"
+      },
+      "display": "16\" 2560x1600 OLED 165Hz, HDR1000, 500 nits",
+      "wireless": "Wi-Fi 6, BT 5.3",
+      "warranty": {
+        "years": 1,
+        "description": "1-year Courier/Carry-in"
+      },
+      "freebies": {
+        "description": "Keyboard, headset, backpack, mouse, 25\" 320Hz monitor",
+        "score": 100
+      },
+      "notes": "Strong CPU/OLED but RTX 5060",
+      "benchmarks": {
+        "averageFps": 80,
+        "onePercentLowFps": 55,
+        "cinebenchR23Single": 2100,
+        "cinebenchR23Multi": 30000
+      },
+      "componentScores": {
+        "gpu": 67.5,
+        "cpu": 100,
+        "vram": 75,
+        "display": 95,
+        "ram": 60,
+        "storage": 75,
+        "warranty": 50,
+        "freebies": 100
+      },
+      "totalScore": 80.55,
+      "valueIndex": 0.61,
+      "adjustedRank": 12,
+      "adjustedScore": 83.15,
+      "adjustedValueIndex": 0.627,
+      "recommendation": "Strong CPU/OLED, but RTX 5060 and one-year warranty."
+    },
+    {
+      "id": "6-lenovo-legion-5-83m0cto1ww",
+      "rank": 6,
+      "option": "Online 7 — Lenovo Legion 5 83M0CTO1WW",
+      "name": "Lenovo Legion 5 83M0CTO1WW",
+      "listingPrefix": "Online 7",
+      "source": "Online laptop",
+      "formFactor": "Laptop",
+      "price": 134926.56,
+      "cpu": "AMD Ryzen 7 260",
+      "gpu": {
+        "name": "Laptop RTX 5060 8GB GDDR7, 100W",
+        "code": 5060,
+        "model": "RTX 5060",
+        "vramGB": 8,
+        "tgpWatts": 100
+      },
+      "memory": {
+        "ramGB": 32,
+        "ramDescription": "32GB DDR5-5600 dual-channel",
+        "storageGB": 1024,
+        "storageDescription": "1TB PCIe Gen4 NVMe"
+      },
+      "display": "15.1\" 2560x1600 OLED 165Hz, HDR600, 500 nits",
+      "wireless": "Wi-Fi 7, BT 5.4",
+      "warranty": {
+        "years": 1,
+        "description": "1-year Courier/Carry-in"
+      },
+      "freebies": {
+        "description": "Keyboard, headset, backpack, mouse, 25\" 320Hz monitor",
+        "score": 100
+      },
+      "notes": "Best budget online package",
+      "benchmarks": {
+        "averageFps": 80,
+        "onePercentLowFps": 55,
+        "cinebenchR23Single": 1800,
+        "cinebenchR23Multi": 17500
+      },
+      "componentScores": {
+        "gpu": 67.5,
+        "cpu": 88.5,
+        "vram": 75,
+        "display": 95,
+        "ram": 95,
+        "storage": 75,
+        "warranty": 50,
+        "freebies": 100
+      },
+      "totalScore": 80.47,
+      "valueIndex": 0.6,
+      "adjustedRank": 10,
+      "adjustedScore": 81.88,
+      "adjustedValueIndex": 0.607,
+      "recommendation": "Best budget online balance: 32 GB RAM, 1 TB SSD, OLED, full bundle; RTX 5060 GPU."
+    },
+    {
+      "id": "7-lenovo-legion-5-83ly003fph",
+      "rank": 7,
+      "option": "Store — Lenovo Legion 5 83LY003FPH",
+      "name": "Lenovo Legion 5 83LY003FPH",
+      "listingPrefix": "Store",
+      "source": "Store laptop",
+      "formFactor": "Laptop",
+      "price": 139999,
+      "cpu": "Intel Core i7-14700HX",
+      "gpu": {
+        "name": "Laptop RTX 5070 8GB GDDR7, 115W",
+        "code": 5070,
+        "model": "RTX 5070",
+        "vramGB": 8,
+        "tgpWatts": 115
+      },
+      "memory": {
+        "ramGB": 24,
+        "ramDescription": "24GB DDR5-4800 dual-channel",
+        "storageGB": 1024,
+        "storageDescription": "1TB PCIe Gen4 NVMe"
+      },
+      "display": "15.1\" 2560x1600 OLED 165Hz, HDR600, 500 nits",
+      "wireless": "Wi-Fi 7",
+      "warranty": {
+        "years": 1,
+        "description": "1-year manufacturer assumed"
+      },
+      "freebies": {
+        "description": "None listed",
+        "score": 0
+      },
+      "notes": "Best balanced store RTX 5070",
+      "benchmarks": {
+        "averageFps": 95,
+        "onePercentLowFps": 65,
+        "cinebenchR23Single": 2100,
+        "cinebenchR23Multi": 30000
+      },
+      "componentScores": {
+        "gpu": 80,
+        "cpu": 100,
+        "vram": 75,
+        "display": 95,
+        "ram": 82.5,
+        "storage": 75,
+        "warranty": 50,
+        "freebies": 0
+      },
+      "totalScore": 83.1,
+      "valueIndex": 0.59,
+      "adjustedRank": 5,
+      "adjustedScore": 84.1,
+      "adjustedValueIndex": 0.601,
+      "recommendation": "Best balanced store RTX 5070: 24 GB RAM, 1 TB SSD, OLED."
+    },
+    {
+      "id": "8-acer-helios-neo-slim-phn16s-71-72we",
+      "rank": 8,
+      "option": "Store — Acer Helios Neo Slim PHN16s-71-72we",
+      "name": "Acer Helios Neo Slim PHN16s-71-72we",
+      "listingPrefix": "Store",
+      "source": "Store laptop",
+      "formFactor": "Laptop",
+      "price": 135999,
+      "cpu": "Intel Core Ultra 7 255HX",
+      "gpu": {
+        "name": "Laptop RTX 5060 8GB GDDR7, 100W",
+        "code": 5060,
+        "model": "RTX 5060",
+        "vramGB": 8,
+        "tgpWatts": 100
+      },
+      "memory": {
+        "ramGB": 16,
+        "ramDescription": "16GB DDR5",
+        "storageGB": 512,
+        "storageDescription": "512GB SSD"
+      },
+      "display": "16\" 2560x1600 OLED 240Hz",
+      "wireless": "Wi-Fi",
+      "warranty": {
+        "years": 1,
+        "description": "1-year manufacturer assumed"
+      },
+      "freebies": {
+        "description": "Monitor, backpack, voucher",
+        "score": 100
+      },
+      "notes": "Good OLED value; RTX 5060/512GB",
+      "benchmarks": {
+        "averageFps": 80,
+        "onePercentLowFps": 55,
+        "cinebenchR23Single": 2100,
+        "cinebenchR23Multi": 30000
+      },
+      "componentScores": {
+        "gpu": 67.5,
+        "cpu": 100,
+        "vram": 75,
+        "display": 100,
+        "ram": 60,
+        "storage": 45,
+        "warranty": 50,
+        "freebies": 100
+      },
+      "totalScore": 79.8,
+      "valueIndex": 0.59,
+      "adjustedRank": 13,
+      "adjustedScore": 81.65,
+      "adjustedValueIndex": 0.6,
+      "recommendation": "Good OLED value, but RTX 5060 and 512 GB storage."
+    },
+    {
+      "id": "9-lenovo-legion-5i-83vkcto1ww",
+      "rank": 9,
+      "option": "Online 4/5 — Lenovo Legion 5i 83VKCTO1WW",
+      "name": "Lenovo Legion 5i 83VKCTO1WW",
+      "listingPrefix": "Online 4/5",
+      "source": "Online laptop",
+      "formFactor": "Laptop",
+      "price": 149214.86,
+      "cpu": "Intel Core Ultra 9 290HX Plus",
+      "gpu": {
+        "name": "Laptop RTX 5070 12GB GDDR7, 115W",
+        "code": 5070,
+        "model": "RTX 5070",
+        "vramGB": 12,
+        "tgpWatts": 115
+      },
+      "memory": {
+        "ramGB": 16,
+        "ramDescription": "16GB DDR5-5600",
+        "storageGB": 1024,
+        "storageDescription": "1TB PCIe Gen5 NVMe"
+      },
+      "display": "15.3\" 2560x1600 OLED 165Hz, HDR1000, 500 nits",
+      "wireless": "Wi-Fi 7, BT 5.4",
+      "warranty": {
+        "years": 1,
+        "description": "1-year Courier/Carry-in"
+      },
+      "freebies": {
+        "description": "Keyboard, headset, backpack, mouse, 25\" 320Hz monitor",
+        "score": 100
+      },
+      "notes": "Best 12GB RTX 5070 laptop value",
+      "benchmarks": {
+        "averageFps": 100,
+        "onePercentLowFps": 70,
+        "cinebenchR23Single": 2250,
+        "cinebenchR23Multi": 37000
+      },
+      "componentScores": {
+        "gpu": 85,
+        "cpu": 100,
+        "vram": 90,
+        "display": 95,
+        "ram": 60,
+        "storage": 75,
+        "warranty": 50,
+        "freebies": 100
+      },
+      "totalScore": 87.3,
+      "valueIndex": 0.58,
+      "adjustedRank": 2,
+      "adjustedScore": 89.9,
+      "adjustedValueIndex": 0.602,
+      "recommendation": "Best premium laptop value. RTX 5070 12 GB, Ultra 9, 1 TB Gen5 SSD, OLED, full bundle; 16 GB RAM and one-year warranty."
+    },
+    {
+      "id": "10-lenovo-legion-tower-5i-90yacto1ww",
+      "rank": 10,
+      "option": "ONLINE DESKTOP — Lenovo Legion Tower 5i 90YACTO1WW",
+      "name": "Lenovo Legion Tower 5i 90YACTO1WW",
+      "listingPrefix": "ONLINE DESKTOP",
+      "source": "Online desktop",
+      "formFactor": "Desktop",
+      "price": 143186.62,
+      "cpu": "Intel Core Ultra 7 265",
+      "gpu": {
+        "name": "Desktop RTX 5060 Ti 8GB GDDR7",
+        "code": 5060,
+        "model": "RTX 5060 Ti",
+        "vramGB": 8,
+        "tgpWatts": 0
+      },
+      "memory": {
+        "ramGB": 16,
+        "ramDescription": "16GB DDR5-5600 dual-channel UDIMM, upgradeable",
+        "storageGB": 512,
+        "storageDescription": "512GB PCIe Gen4 NVMe; expansion available"
+      },
+      "display": "Included 25\" FHD 320Hz gaming monitor",
+      "wireless": "Wi-Fi 7, BT 5.4",
+      "warranty": {
+        "years": 1,
+        "description": "1-year Courier/Carry-in"
+      },
+      "freebies": {
+        "description": "Keyboard, headset, backpack, mouse, 25\" 320Hz monitor",
+        "score": 100
+      },
+      "notes": "Best desktop value; desktop GPU and upgradeability",
+      "benchmarks": {
+        "averageFps": 120,
+        "onePercentLowFps": 85,
+        "cinebenchR23Single": 2050,
+        "cinebenchR23Multi": 28000
+      },
+      "componentScores": {
+        "gpu": 100,
+        "cpu": 100,
+        "vram": 75,
+        "display": 50,
+        "ram": 70,
+        "storage": 55,
+        "warranty": 50,
+        "freebies": 100
+      },
+      "totalScore": 83.35,
+      "valueIndex": 0.58,
+      "adjustedRank": 3,
+      "adjustedScore": 89.15,
+      "adjustedValueIndex": 0.622,
+      "recommendation": "Best desktop deal. Desktop RTX 5060 Ti, included monitor/peripherals, strong upgradeability; 512 GB SSD and 8 GB VRAM are limitations."
+    },
+    {
+      "id": "11-asus-tuf-a16-fa608up-rv195wsm",
+      "rank": 11,
+      "option": "Store — ASUS TUF A16 FA608UP-RV195WSM",
+      "name": "ASUS TUF A16 FA608UP-RV195WSM",
+      "listingPrefix": "Store",
+      "source": "Store laptop",
+      "formFactor": "Laptop",
+      "price": 133999,
+      "cpu": "AMD Ryzen 7 260",
+      "gpu": {
+        "name": "Laptop RTX 5070 8GB GDDR7, 140W",
+        "code": 5070,
+        "model": "RTX 5070",
+        "vramGB": 8,
+        "tgpWatts": 140
+      },
+      "memory": {
+        "ramGB": 16,
+        "ramDescription": "16GB DDR5-5600",
+        "storageGB": 512,
+        "storageDescription": "512GB PCIe Gen4 NVMe"
+      },
+      "display": "16\" 1920x1200 IPS 165Hz G-Sync",
+      "wireless": "Wi-Fi",
+      "warranty": {
+        "years": 1,
+        "description": "1-year manufacturer assumed"
+      },
+      "freebies": {
+        "description": "Office, Microsoft 365 Basic, backpack",
+        "score": 45.98
+      },
+      "notes": "Best store GPU-per-peso; 512GB SSD",
+      "benchmarks": {
+        "averageFps": 105,
+        "onePercentLowFps": 72,
+        "cinebenchR23Single": 1800,
+        "cinebenchR23Multi": 17500
+      },
+      "componentScores": {
+        "gpu": 88.5,
+        "cpu": 88.5,
+        "vram": 75,
+        "display": 75,
+        "ram": 60,
+        "storage": 45,
+        "warranty": 50,
+        "freebies": 45.98
+      },
+      "totalScore": 77.85,
+      "valueIndex": 0.58,
+      "adjustedRank": 8,
+      "adjustedScore": 80.45,
+      "adjustedValueIndex": 0.6,
+      "recommendation": "Best store GPU-per-peso option: 140 W RTX 5070, but FHD+ IPS and 512 GB SSD."
+    },
+    {
+      "id": "12-acer-helios-neo-slim-phn16s-71-9269",
+      "rank": 12,
+      "option": "Store — Acer Helios Neo Slim PHN16S-71-9269",
+      "name": "Acer Helios Neo Slim PHN16S-71-9269",
+      "listingPrefix": "Store",
+      "source": "Store laptop",
+      "formFactor": "Laptop",
+      "price": 151999,
+      "cpu": "Intel Core Ultra 9 275HX",
+      "gpu": {
+        "name": "Laptop RTX 5070 8GB GDDR7, 115W",
+        "code": 5070,
+        "model": "RTX 5070",
+        "vramGB": 8,
+        "tgpWatts": 115
+      },
+      "memory": {
+        "ramGB": 32,
+        "ramDescription": "32GB DDR5",
+        "storageGB": 1024,
+        "storageDescription": "1TB SSD"
+      },
+      "display": "16\" 2560x1600 OLED 240Hz",
+      "wireless": "Wi-Fi",
+      "warranty": {
+        "years": 1,
+        "description": "1-year manufacturer assumed"
+      },
+      "freebies": {
+        "description": "None listed",
+        "score": 100
+      },
+      "notes": "Best premium 8GB RTX 5070",
+      "benchmarks": {
+        "averageFps": 95,
+        "onePercentLowFps": 65,
+        "cinebenchR23Single": 2200,
+        "cinebenchR23Multi": 35000
+      },
+      "componentScores": {
+        "gpu": 80,
+        "cpu": 100,
+        "vram": 75,
+        "display": 100,
+        "ram": 85,
+        "storage": 75,
+        "warranty": 50,
+        "freebies": 100
+      },
+      "totalScore": 87.05,
+      "valueIndex": 0.57,
+      "adjustedRank": 6,
+      "adjustedScore": 88.5,
+      "adjustedValueIndex": 0.582,
+      "recommendation": "Best premium 8 GB RTX 5070: 32 GB RAM, 1 TB SSD, Ultra 9, 240 Hz OLED."
+    },
+    {
+      "id": "13-msi-cyborg-17-b2rwfkg-420ph",
+      "rank": 13,
+      "option": "Store — MSI Cyborg 17 B2rwfkg 420ph",
+      "name": "MSI Cyborg 17 B2rwfkg 420ph",
+      "listingPrefix": "Store",
+      "source": "Store laptop",
+      "formFactor": "Laptop",
+      "price": 117999,
+      "cpu": "Intel Core 7 240H",
+      "gpu": {
+        "name": "Laptop RTX 5060 8GB GDDR7, 100W",
+        "code": 5060,
+        "model": "RTX 5060",
+        "vramGB": 8,
+        "tgpWatts": 100
+      },
+      "memory": {
+        "ramGB": 16,
+        "ramDescription": "16GB DDR5",
+        "storageGB": 512,
+        "storageDescription": "512GB SSD"
+      },
+      "display": "17.3\" 1920x1080 IPS",
+      "wireless": "Wi-Fi",
+      "warranty": {
+        "years": 1,
+        "description": "1-year manufacturer assumed"
+      },
+      "freebies": {
+        "description": "Mouse or headset",
+        "score": 28.74
+      },
+      "notes": "Lowest-cost RTX 5060; weak platform",
+      "benchmarks": {
+        "averageFps": 80,
+        "onePercentLowFps": 55,
+        "cinebenchR23Single": 1750,
+        "cinebenchR23Multi": 16000
+      },
+      "componentScores": {
+        "gpu": 67.5,
+        "cpu": 83,
+        "vram": 75,
+        "display": 60,
+        "ram": 60,
+        "storage": 45,
+        "warranty": 50,
+        "freebies": 28.74
+      },
+      "totalScore": 67.41,
+      "valueIndex": 0.57,
+      "adjustedRank": 20,
+      "adjustedScore": 71.76,
+      "adjustedValueIndex": 0.608,
+      "recommendation": "Lowest-cost RTX 5060, but weakest display and platform."
+    },
+    {
+      "id": "14-acer-helios-neo-16s-phn16s-71-72we",
+      "rank": 14,
+      "option": "Store — Acer Helios Neo 16S PHN16S-71-72WE",
+      "name": "Acer Helios Neo 16S PHN16S-71-72WE",
+      "listingPrefix": "Store",
+      "source": "Store laptop",
+      "formFactor": "Laptop",
+      "price": 129999,
+      "cpu": "Intel Core Ultra 7 255HX",
+      "gpu": {
+        "name": "Laptop RTX 5060 8GB GDDR7, 100W",
+        "code": 5060,
+        "model": "RTX 5060",
+        "vramGB": 8,
+        "tgpWatts": 100
+      },
+      "memory": {
+        "ramGB": 16,
+        "ramDescription": "16GB DDR5",
+        "storageGB": 512,
+        "storageDescription": "512GB SSD"
+      },
+      "display": "16\" 2560x1600 OLED",
+      "wireless": "Wi-Fi",
+      "warranty": {
+        "years": 1,
+        "description": "1-year manufacturer assumed"
+      },
+      "freebies": {
+        "description": "None listed",
+        "score": 0
+      },
+      "notes": "Budget OLED; RTX 5060 and 512GB",
+      "benchmarks": {
+        "averageFps": 80,
+        "onePercentLowFps": 55,
+        "cinebenchR23Single": 2100,
+        "cinebenchR23Multi": 30000
+      },
+      "componentScores": {
+        "gpu": 67.5,
+        "cpu": 100,
+        "vram": 75,
+        "display": 80,
+        "ram": 60,
+        "storage": 45,
+        "warranty": 50,
+        "freebies": 0
+      },
+      "totalScore": 73.8,
+      "valueIndex": 0.57,
+      "adjustedRank": 14,
+      "adjustedScore": 78.65,
+      "adjustedValueIndex": 0.605,
+      "recommendation": "Budget OLED; RTX 5060, 16 GB RAM, and 512 GB SSD."
+    },
+    {
+      "id": "15-lenovo-legion-5-83f1004nph",
+      "rank": 15,
+      "option": "Store — Lenovo Legion 5 83f1004nph",
+      "name": "Lenovo Legion 5 83f1004nph",
+      "listingPrefix": "Store",
+      "source": "Store laptop",
+      "formFactor": "Laptop",
+      "price": 147999,
+      "cpu": "AMD Ryzen AI 7 350",
+      "gpu": {
+        "name": "Laptop RTX 5070 8GB GDDR7, 115W",
+        "code": 5070,
+        "model": "RTX 5070",
+        "vramGB": 8,
+        "tgpWatts": 115
+      },
+      "memory": {
+        "ramGB": 16,
+        "ramDescription": "16GB DDR5",
+        "storageGB": 1024,
+        "storageDescription": "1TB PCIe Gen4 NVMe"
+      },
+      "display": "15.1\" 2560x1600 OLED 165Hz",
+      "wireless": "Wi-Fi",
+      "warranty": {
+        "years": 1,
+        "description": "1-year manufacturer assumed"
+      },
+      "freebies": {
+        "description": "Monitor, ₱3,000 gift certificate",
+        "score": 100
+      },
+      "notes": "Best previous store all-rounder",
+      "benchmarks": {
+        "averageFps": 95,
+        "onePercentLowFps": 65,
+        "cinebenchR23Single": 1900,
+        "cinebenchR23Multi": 19000
+      },
+      "componentScores": {
+        "gpu": 80,
+        "cpu": 95,
+        "vram": 75,
+        "display": 95,
+        "ram": 60,
+        "storage": 75,
+        "warranty": 50,
+        "freebies": 100
+      },
+      "totalScore": 83.05,
+      "valueIndex": 0.56,
+      "adjustedRank": 9,
+      "adjustedScore": 85.65,
+      "adjustedValueIndex": 0.579,
+      "recommendation": "Best previous store all-rounder; now beaten by the ₱110,999 Legion 5."
+    },
+    {
+      "id": "16-lenovo-legion-5i-83vk0033ph",
+      "rank": 16,
+      "option": "Online 1 — Lenovo Legion 5i 83VK0033PH",
+      "name": "Lenovo Legion 5i 83VK0033PH",
+      "listingPrefix": "Online 1",
+      "source": "Online laptop",
+      "formFactor": "Laptop",
+      "price": 165868.26,
+      "cpu": "Intel Core Ultra 7 251HX",
+      "gpu": {
+        "name": "Laptop RTX 5070 12GB GDDR7, 115W",
+        "code": 5070,
+        "model": "RTX 5070",
+        "vramGB": 12,
+        "tgpWatts": 115
+      },
+      "memory": {
+        "ramGB": 32,
+        "ramDescription": "32GB DDR5-5600 dual-channel, upgradeable",
+        "storageGB": 1024,
+        "storageDescription": "1TB PCIe Gen5 NVMe; extra M.2"
+      },
+      "display": "15.3\" 2560x1600 OLED 165Hz, HDR1000, 500 nits",
+      "wireless": "Wi-Fi 7, BT 5.4",
+      "warranty": {
+        "years": 2,
+        "description": "2-year Legion Ultimate Support"
+      },
+      "freebies": {
+        "description": "Keyboard, headset, backpack, mouse, 25\" 320Hz monitor",
+        "score": 100
+      },
+      "notes": "Best complete long-term laptop package",
+      "benchmarks": {
+        "averageFps": 100,
+        "onePercentLowFps": 70,
+        "cinebenchR23Single": 2050,
+        "cinebenchR23Multi": 28000
+      },
+      "componentScores": {
+        "gpu": 85,
+        "cpu": 100,
+        "vram": 90,
+        "display": 95,
+        "ram": 95,
+        "storage": 75,
+        "warranty": 75,
+        "freebies": 100
+      },
+      "totalScore": 91.1,
+      "valueIndex": 0.55,
+      "adjustedRank": 4,
+      "adjustedScore": 92.5,
+      "adjustedValueIndex": 0.558,
+      "recommendation": "Best fully equipped laptop. RTX 5070 12 GB, 32 GB dual-channel RAM, 1 TB Gen5 SSD, OLED, Wi‑Fi 7, two-year warranty, full bundle."
+    },
+    {
+      "id": "17-acer-helios-neo-slim-phn16s-71-9269",
+      "rank": 17,
+      "option": "Store — Acer Helios Neo Slim PHN16s-71-9269",
+      "name": "Acer Helios Neo Slim PHN16s-71-9269",
+      "listingPrefix": "Store",
+      "source": "Store laptop",
+      "formFactor": "Laptop",
+      "price": 159499,
+      "cpu": "Intel Core Ultra 9 275HX",
+      "gpu": {
+        "name": "Laptop RTX 5070 8GB GDDR7, 115W",
+        "code": 5070,
+        "model": "RTX 5070",
+        "vramGB": 8,
+        "tgpWatts": 115
+      },
+      "memory": {
+        "ramGB": 32,
+        "ramDescription": "32GB DDR5",
+        "storageGB": 1024,
+        "storageDescription": "1TB SSD"
+      },
+      "display": "16\" 2560x1600 OLED 240Hz",
+      "wireless": "Wi-Fi",
+      "warranty": {
+        "years": 1,
+        "description": "1-year manufacturer assumed"
+      },
+      "freebies": {
+        "description": "Chair, backpack, vouchers, accessories",
+        "score": 100
+      },
+      "notes": "Best store premium package",
+      "benchmarks": {
+        "averageFps": 95,
+        "onePercentLowFps": 65,
+        "cinebenchR23Single": 2200,
+        "cinebenchR23Multi": 35000
+      },
+      "componentScores": {
+        "gpu": 80,
+        "cpu": 100,
+        "vram": 75,
+        "display": 100,
+        "ram": 85,
+        "storage": 75,
+        "warranty": 50,
+        "freebies": 100
+      },
+      "totalScore": 87.05,
+      "valueIndex": 0.55,
+      "adjustedRank": null,
+      "adjustedScore": null,
+      "adjustedValueIndex": null,
+      "recommendation": null
+    },
+    {
+      "id": "18-acer-predator-helios-neo-slim-phn16s-71-981m",
+      "rank": 18,
+      "option": "Store — Acer Predator Helios Neo Slim PHN16S-71-981M",
+      "name": "Acer Predator Helios Neo Slim PHN16S-71-981M",
+      "listingPrefix": "Store",
+      "source": "Store laptop",
+      "formFactor": "Laptop",
+      "price": 169999,
+      "cpu": "Intel Core Ultra 9",
+      "gpu": {
+        "name": "Laptop RTX 5070 Ti 12GB GDDR7",
+        "code": 5070,
+        "model": "RTX 5070 Ti",
+        "vramGB": 12,
+        "tgpWatts": 0
+      },
+      "memory": {
+        "ramGB": 32,
+        "ramDescription": "32GB DDR5",
+        "storageGB": 1024,
+        "storageDescription": "1TB SSD"
+      },
+      "display": "16\" 2560x1600 OLED 240Hz",
+      "wireless": "Wi-Fi",
+      "warranty": {
+        "years": 1,
+        "description": "1-year manufacturer assumed"
+      },
+      "freebies": {
+        "description": "None listed",
+        "score": 0
+      },
+      "notes": "Best laptop performance and longevity",
+      "benchmarks": {
+        "averageFps": 115,
+        "onePercentLowFps": 80,
+        "cinebenchR23Single": 2200,
+        "cinebenchR23Multi": 35000
+      },
+      "componentScores": {
+        "gpu": 97.5,
+        "cpu": 100,
+        "vram": 90,
+        "display": 100,
+        "ram": 85,
+        "storage": 75,
+        "warranty": 50,
+        "freebies": 0
+      },
+      "totalScore": 90.8,
+      "valueIndex": 0.53,
+      "adjustedRank": 7,
+      "adjustedScore": 92.25,
+      "adjustedValueIndex": 0.543,
+      "recommendation": "Best laptop performance and longevity: RTX 5070 Ti 12 GB, 32 GB RAM, 1 TB SSD, 240 Hz OLED."
+    },
+    {
+      "id": "19-lenovo-legion-5-white-83q6004pph-12gb",
+      "rank": 19,
+      "option": "Store — Lenovo Legion 5 White 83Q6004PPH (12GB)",
+      "name": "Lenovo Legion 5 White 83Q6004PPH (12GB)",
+      "listingPrefix": "Store",
+      "source": "Store laptop",
+      "formFactor": "Laptop",
+      "price": 162999,
+      "cpu": "AMD Ryzen 7 AI 450",
+      "gpu": {
+        "name": "Laptop RTX 5070 12GB GDDR7, 115W",
+        "code": 5070,
+        "model": "RTX 5070",
+        "vramGB": 12,
+        "tgpWatts": 115
+      },
+      "memory": {
+        "ramGB": 16,
+        "ramDescription": "16GB DDR5",
+        "storageGB": 512,
+        "storageDescription": "512GB SSD"
+      },
+      "display": "15.3\" 2560x1600 OLED 165Hz",
+      "wireless": "Wi-Fi",
+      "warranty": {
+        "years": 1,
+        "description": "1-year manufacturer assumed"
+      },
+      "freebies": {
+        "description": "Monitor, keyboard, backpack, headset certificate",
+        "score": 100
+      },
+      "notes": "Best store 12GB VRAM option",
+      "benchmarks": {
+        "averageFps": 100,
+        "onePercentLowFps": 70,
+        "cinebenchR23Single": 1950,
+        "cinebenchR23Multi": 21000
+      },
+      "componentScores": {
+        "gpu": 85,
+        "cpu": 99,
+        "vram": 90,
+        "display": 95,
+        "ram": 60,
+        "storage": 45,
+        "warranty": 50,
+        "freebies": 100
+      },
+      "totalScore": 85.55,
+      "valueIndex": 0.52,
+      "adjustedRank": 15,
+      "adjustedScore": 88.15,
+      "adjustedValueIndex": 0.541,
+      "recommendation": "Best store 12 GB VRAM option, but 512 GB SSD."
+    },
+    {
+      "id": "20-acer-helios-neo-16-phn16-73-93y5",
+      "rank": 20,
+      "option": "Store — Acer Helios Neo 16 PHN16-73-93y5",
+      "name": "Acer Helios Neo 16 PHN16-73-93y5",
+      "listingPrefix": "Store",
+      "source": "Store laptop",
+      "formFactor": "Laptop",
+      "price": 167999,
+      "cpu": "Intel Core Ultra 9 275HX",
+      "gpu": {
+        "name": "Laptop RTX 5060 Ti 12GB GDDR7",
+        "code": 5060,
+        "model": "RTX 5060 Ti",
+        "vramGB": 12,
+        "tgpWatts": 0
+      },
+      "memory": {
+        "ramGB": 32,
+        "ramDescription": "32GB DDR5",
+        "storageGB": 1024,
+        "storageDescription": "1TB SSD"
+      },
+      "display": "16\" 2560x1600 OLED 240Hz",
+      "wireless": "Wi-Fi",
+      "warranty": {
+        "years": 1,
+        "description": "1-year manufacturer assumed"
+      },
+      "freebies": {
+        "description": "None listed",
+        "score": 0
+      },
+      "notes": "12GB VRAM but RTX 5060 Ti; poor price-to-GPU",
+      "benchmarks": {
+        "averageFps": 100,
+        "onePercentLowFps": 70,
+        "cinebenchR23Single": 2200,
+        "cinebenchR23Multi": 35000
+      },
+      "componentScores": {
+        "gpu": 85,
+        "cpu": 100,
+        "vram": 90,
+        "display": 100,
+        "ram": 85,
+        "storage": 75,
+        "warranty": 50,
+        "freebies": 0
+      },
+      "totalScore": 87.05,
+      "valueIndex": 0.52,
+      "adjustedRank": 16,
+      "adjustedScore": 88.5,
+      "adjustedValueIndex": 0.527,
+      "recommendation": "12 GB VRAM, but RTX 5060 Ti costs more than RTX 5070 alternatives."
+    },
+    {
+      "id": "21-lenovo-legion-7i-83kycto1ww",
+      "rank": 21,
+      "option": "Online 6 — Lenovo Legion 7i 83KYCTO1WW",
+      "name": "Lenovo Legion 7i 83KYCTO1WW",
+      "listingPrefix": "Online 6",
+      "source": "Online laptop",
+      "formFactor": "Laptop",
+      "price": 164309.53,
+      "cpu": "Intel Core Ultra 9 275HX",
+      "gpu": {
+        "name": "Laptop RTX 5060 8GB GDDR7, 100W",
+        "code": 5060,
+        "model": "RTX 5060",
+        "vramGB": 8,
+        "tgpWatts": 100
+      },
+      "memory": {
+        "ramGB": 32,
+        "ramDescription": "32GB DDR5-5600 dual-channel",
+        "storageGB": 1024,
+        "storageDescription": "1TB PCIe Gen4 NVMe"
+      },
+      "display": "16\" 2560x1600 OLED 165Hz, HDR1000, 500 nits",
+      "wireless": "Wi-Fi 7, BT 5.4",
+      "warranty": {
+        "years": 1,
+        "description": "1-year Courier/Carry-in"
+      },
+      "freebies": {
+        "description": "Keyboard, headset, backpack, mouse, 25\" 320Hz monitor",
+        "score": 100
+      },
+      "notes": "Premium chassis but weak GPU value",
+      "benchmarks": {
+        "averageFps": 80,
+        "onePercentLowFps": 55,
+        "cinebenchR23Single": 2200,
+        "cinebenchR23Multi": 35000
+      },
+      "componentScores": {
+        "gpu": 67.5,
+        "cpu": 100,
+        "vram": 75,
+        "display": 95,
+        "ram": 95,
+        "storage": 75,
+        "warranty": 50,
+        "freebies": 100
+      },
+      "totalScore": 83.35,
+      "valueIndex": 0.51,
+      "adjustedRank": null,
+      "adjustedScore": null,
+      "adjustedValueIndex": null,
+      "recommendation": null
+    },
+    {
+      "id": "22-asus-rog-zephyrus-g14-ga403uh",
+      "rank": 22,
+      "option": "Store — ASUS ROG Zephyrus G14 GA403UH",
+      "name": "ASUS ROG Zephyrus G14 GA403UH",
+      "listingPrefix": "Store",
+      "source": "Store laptop",
+      "formFactor": "Laptop",
+      "price": 140999,
+      "cpu": "AMD Ryzen 9 270",
+      "gpu": {
+        "name": "Laptop RTX 5050 8GB GDDR7",
+        "code": 5050,
+        "model": "RTX 5050",
+        "vramGB": 8,
+        "tgpWatts": 0
+      },
+      "memory": {
+        "ramGB": 16,
+        "ramDescription": "16GB DDR5",
+        "storageGB": 1024,
+        "storageDescription": "1TB SSD"
+      },
+      "display": "14\" OLED",
+      "wireless": "Wi-Fi",
+      "warranty": {
+        "years": 1,
+        "description": "1-year manufacturer assumed"
+      },
+      "freebies": {
+        "description": "None listed",
+        "score": 0
+      },
+      "notes": "Avoid for gaming value; weakest GPU",
+      "benchmarks": {
+        "averageFps": 60,
+        "onePercentLowFps": 40,
+        "cinebenchR23Single": 1950,
+        "cinebenchR23Multi": 22000
+      },
+      "componentScores": {
+        "gpu": 50,
+        "cpu": 99,
+        "vram": 75,
+        "display": 75,
+        "ram": 60,
+        "storage": 75,
+        "warranty": 50,
+        "freebies": 0
+      },
+      "totalScore": 69.05,
+      "valueIndex": 0.49,
+      "adjustedRank": 21,
+      "adjustedScore": 73.1,
+      "adjustedValueIndex": 0.518,
+      "recommendation": "Red flag for gaming value: RTX 5050 is far weaker than similarly priced RTX 5070 options."
+    },
+    {
+      "id": "23-lenovo-legion-5-white-83q6004pph-12gb-b",
+      "rank": 23,
+      "option": "Store — Lenovo Legion 5 White 83Q6004PPH (12GB, B)",
+      "name": "Lenovo Legion 5 White 83Q6004PPH (12GB, B)",
+      "listingPrefix": "Store",
+      "source": "Store laptop",
+      "formFactor": "Laptop",
+      "price": 174999,
+      "cpu": "AMD Ryzen 7 AI 450",
+      "gpu": {
+        "name": "Laptop RTX 5070 12GB GDDR7, 115W",
+        "code": 5070,
+        "model": "RTX 5070",
+        "vramGB": 12,
+        "tgpWatts": 115
+      },
+      "memory": {
+        "ramGB": 16,
+        "ramDescription": "16GB DDR5",
+        "storageGB": 512,
+        "storageDescription": "512GB SSD"
+      },
+      "display": "15.3\" 2560x1600 OLED 165Hz",
+      "wireless": "Wi-Fi",
+      "warranty": {
+        "years": 1,
+        "description": "1-year manufacturer assumed"
+      },
+      "freebies": {
+        "description": "Monitor, ₱3,000 gift certificate",
+        "score": 100
+      },
+      "notes": "Worse value than ₱162,999 version",
+      "benchmarks": {
+        "averageFps": 100,
+        "onePercentLowFps": 70,
+        "cinebenchR23Single": 1950,
+        "cinebenchR23Multi": 21000
+      },
+      "componentScores": {
+        "gpu": 85,
+        "cpu": 99,
+        "vram": 90,
+        "display": 95,
+        "ram": 60,
+        "storage": 45,
+        "warranty": 50,
+        "freebies": 100
+      },
+      "totalScore": 85.55,
+      "valueIndex": 0.49,
+      "adjustedRank": 24,
+      "adjustedScore": 88.15,
+      "adjustedValueIndex": 0.504,
+      "recommendation": "Same GPU as ₱162,999 version but worse freebies and value."
+    },
+    {
+      "id": "24-lenovo-legion-pro-5-83f2000nph",
+      "rank": 24,
+      "option": "Store — Lenovo Legion Pro 5 83f2000nph",
+      "name": "Lenovo Legion Pro 5 83f2000nph",
+      "listingPrefix": "Store",
+      "source": "Store laptop",
+      "formFactor": "Laptop",
+      "price": 176999,
+      "cpu": "AMD Ryzen 9 9955HX",
+      "gpu": {
+        "name": "Laptop RTX 5070 8GB GDDR7, 115W",
+        "code": 5070,
+        "model": "RTX 5070",
+        "vramGB": 8,
+        "tgpWatts": 115
+      },
+      "memory": {
+        "ramGB": 32,
+        "ramDescription": "32GB DDR5-5600",
+        "storageGB": 1024,
+        "storageDescription": "1TB PCIe Gen4 NVMe"
+      },
+      "display": "16\" 2560x1600 OLED 165Hz",
+      "wireless": "Wi-Fi",
+      "warranty": {
+        "years": 1,
+        "description": "1-year manufacturer assumed"
+      },
+      "freebies": {
+        "description": "Monitor, ₱3,000 gift certificate",
+        "score": 100
+      },
+      "notes": "Best CPU/productivity laptop",
+      "benchmarks": {
+        "averageFps": 95,
+        "onePercentLowFps": 65,
+        "cinebenchR23Single": 2300,
+        "cinebenchR23Multi": 40000
+      },
+      "componentScores": {
+        "gpu": 80,
+        "cpu": 100,
+        "vram": 75,
+        "display": 95,
+        "ram": 85,
+        "storage": 75,
+        "warranty": 50,
+        "freebies": 100
+      },
+      "totalScore": 86.3,
+      "valueIndex": 0.49,
+      "adjustedRank": 17,
+      "adjustedScore": 88.5,
+      "adjustedValueIndex": 0.5,
+      "recommendation": "Best CPU/productivity laptop, but poor GPU value at this price."
+    },
+    {
+      "id": "25-asus-g615lp-s5046wsm",
+      "rank": 25,
+      "option": "Store — ASUS G615LP S5046wsm",
+      "name": "ASUS G615LP S5046wsm",
+      "listingPrefix": "Store",
+      "source": "Store laptop",
+      "formFactor": "Laptop",
+      "price": 169999,
+      "cpu": "Intel Core Ultra 9 275HX",
+      "gpu": {
+        "name": "Laptop RTX 5070 8GB GDDR7, 115W",
+        "code": 5070,
+        "model": "RTX 5070",
+        "vramGB": 8,
+        "tgpWatts": 115
+      },
+      "memory": {
+        "ramGB": 16,
+        "ramDescription": "16GB DDR5",
+        "storageGB": 1024,
+        "storageDescription": "1TB SSD"
+      },
+      "display": "16\" 2560x1600 IPS 240Hz",
+      "wireless": "Wi-Fi",
+      "warranty": {
+        "years": 1,
+        "description": "1-year manufacturer assumed"
+      },
+      "freebies": {
+        "description": "Keyboard, headset",
+        "score": 45.98
+      },
+      "notes": "Good specs but poor RAM/storage value",
+      "benchmarks": {
+        "averageFps": 95,
+        "onePercentLowFps": 65,
+        "cinebenchR23Single": 2200,
+        "cinebenchR23Multi": 35000
+      },
+      "componentScores": {
+        "gpu": 80,
+        "cpu": 100,
+        "vram": 75,
+        "display": 85,
+        "ram": 60,
+        "storage": 75,
+        "warranty": 50,
+        "freebies": 45.98
+      },
+      "totalScore": 81.18,
+      "valueIndex": 0.48,
+      "adjustedRank": 23,
+      "adjustedScore": 83.78,
+      "adjustedValueIndex": 0.493,
+      "recommendation": "Good CPU/GPU but only 16 GB RAM at a premium price."
+    },
+    {
+      "id": "26-asus-rog-g16-g615lh-ts094wsm",
+      "rank": 26,
+      "option": "Store — ASUS ROG G16 G615LH TS094WSM",
+      "name": "ASUS ROG G16 G615LH TS094WSM",
+      "listingPrefix": "Store",
+      "source": "Store laptop",
+      "formFactor": "Laptop",
+      "price": 159995,
+      "cpu": "Intel Core Ultra 7 255HX",
+      "gpu": {
+        "name": "Laptop RTX 5070 8GB GDDR7, 115W",
+        "code": 5070,
+        "model": "RTX 5070",
+        "vramGB": 8,
+        "tgpWatts": 115
+      },
+      "memory": {
+        "ramGB": 16,
+        "ramDescription": "16GB DDR5",
+        "storageGB": 512,
+        "storageDescription": "512GB SSD"
+      },
+      "display": "16\" 2560x1600 IPS 300Hz",
+      "wireless": "Wi-Fi",
+      "warranty": {
+        "years": 1,
+        "description": "1-year manufacturer assumed"
+      },
+      "freebies": {
+        "description": "None listed",
+        "score": 0
+      },
+      "notes": "Avoid unless GPU listing verified",
+      "benchmarks": {
+        "averageFps": 95,
+        "onePercentLowFps": 65,
+        "cinebenchR23Single": 2100,
+        "cinebenchR23Multi": 30000
+      },
+      "componentScores": {
+        "gpu": 80,
+        "cpu": 100,
+        "vram": 75,
+        "display": 65,
+        "ram": 60,
+        "storage": 45,
+        "warranty": 50,
+        "freebies": 0
+      },
+      "totalScore": 75.3,
+      "valueIndex": 0.47,
+      "adjustedRank": 22,
+      "adjustedScore": 80.4,
+      "adjustedValueIndex": 0.503,
+      "recommendation": "Red flag: “RTX 5070 Ti 8 GB” listing is inconsistent; verify before buying."
+    },
+    {
+      "id": "27-lenovo-legion-7-83ky001dph",
+      "rank": 27,
+      "option": "Store — Lenovo Legion 7 83KY001DPH",
+      "name": "Lenovo Legion 7 83KY001DPH",
+      "listingPrefix": "Store",
+      "source": "Store laptop",
+      "formFactor": "Laptop",
+      "price": 163999,
+      "cpu": "Intel Core Ultra 7 255HX",
+      "gpu": {
+        "name": "Laptop RTX 5060 8GB GDDR7, 100W",
+        "code": 5060,
+        "model": "RTX 5060",
+        "vramGB": 8,
+        "tgpWatts": 100
+      },
+      "memory": {
+        "ramGB": 32,
+        "ramDescription": "32GB DDR5",
+        "storageGB": 1024,
+        "storageDescription": "1TB SSD"
+      },
+      "display": "16\" WQXGA display",
+      "wireless": "Wi-Fi",
+      "warranty": {
+        "years": 1,
+        "description": "1-year manufacturer assumed"
+      },
+      "freebies": {
+        "description": "None listed",
+        "score": 0
+      },
+      "notes": "Premium chassis but weak GPU value",
+      "benchmarks": {
+        "averageFps": 80,
+        "onePercentLowFps": 55,
+        "cinebenchR23Single": 2100,
+        "cinebenchR23Multi": 30000
+      },
+      "componentScores": {
+        "gpu": 67.5,
+        "cpu": 100,
+        "vram": 75,
+        "display": 35,
+        "ram": 85,
+        "storage": 75,
+        "warranty": 50,
+        "freebies": 0
+      },
+      "totalScore": 70.55,
+      "valueIndex": 0.43,
+      "adjustedRank": 18,
+      "adjustedScore": 81.75,
+      "adjustedValueIndex": 0.499,
+      "recommendation": "Premium chassis and 32 GB RAM, but RTX 5060 is weak for the price."
+    }
+  ],
+  "redFlags": [
+    "ASUS TUF F16, ₱111,999: Excellent paper value, but reviews report substantial sustained-performance throttling. Buy only after testing the exact unit under long gaming load.",
+    "ASUS ROG G16, ₱159,995: “RTX 5070 Ti 8 GB” conflicts with NVIDIA’s RTX 5070 Ti 12 GB specification; verify before purchase.",
+    "ASUS ROG Zephyrus G14, ₱140,999: RTX 5050 is much weaker than similarly priced RTX 5060/5070 options.",
+    "Lenovo Legion 7, ₱163,999: Premium chassis and 32 GB RAM, but RTX 5060 8 GB is poor gaming value beside the ₱139,999 RTX 5070 Legion 5.",
+    "Acer Helios Neo 16 RTX 5060 Ti, ₱167,999+: 12 GB VRAM is useful, but it costs more than RTX 5070/5070 Ti alternatives."
+  ],
+  "finalRecommendations": [
+    {
+      "title": "Best Overall Deal — Lenovo Legion 5 `83LY00LVPH`, ₱110,999.",
+      "details": "Buy if you want the strongest value and are comfortable upgrading RAM and storage later."
+    },
+    {
+      "title": "Best Desktop Deal — Legion Tower 5i, ₱143,187.",
+      "details": "Buy if you do not need portability; desktop RTX 5060 Ti, included monitor/peripherals, 850 W PSU, and upgradeability."
+    },
+    {
+      "title": "Best Premium Laptop Value — Online Legion 5i `83VKCTO1WW`, ₱149,215.",
+      "details": "Buy if you can wait 4–5 weeks and want RTX 5070 12 GB, Ultra 9, 1 TB Gen5 SSD, OLED, and full freebies."
+    },
+    {
+      "title": "Best Fully Equipped Laptop — Online Legion 5i `83VK0033PH`, ₱165,868.",
+      "details": "Buy if you want 32 GB dual-channel RAM, 1 TB Gen5 storage, two-year warranty, and the most complete long-term laptop package."
+    },
+    {
+      "title": "Best Store Premium Laptop — Acer Helios Neo Slim `PHN16S-71-981M`, ₱169,999.",
+      "details": "Buy if you want the strongest laptop GPU, 12 GB VRAM, 32 GB RAM, and a 240 Hz OLED."
+    },
+    {
+      "title": "Avoid:",
+      "details": "ASUS TUF F16 (thermal throttling reports), ASUS ROG G16 (unverified GPU listing), ASUS ROG Zephyrus G14 (weak GPU value), and ₱174,999 Legion 5 White (worse value than ₱162,999 version)."
+    }
+  ]
+}
